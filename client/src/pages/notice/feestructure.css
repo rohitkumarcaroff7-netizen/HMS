@@ -1,0 +1,35 @@
+.fcontainer{
+   
+   margin: 20px;
+   
+}
+.apply{
+   margin-top: 15px;
+   margin-bottom: 20px;
+}
+.hta{
+   margin-top:25px;
+   margin-left: 240px;
+   margin-right: 220px;
+ border-top: 1px solid #ffffff;
+  padding: 10px;
+}
+.applybtn{
+   height: 40px;
+   width: 80px;
+   margin-left: 45%;
+   cursor: pointer;
+   margin-top: 20px;
+}
+.applybtnr{
+   height: 40px;
+   width: 100px;
+   margin-left: 45%;
+   cursor: pointer;
+   margin-top: 20px;
+}
+.FB{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

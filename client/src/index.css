@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    background-color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    /* margin-left: 10px;
+    margin-right: 10px; */
+    margin-top: 2px;
+    
+}

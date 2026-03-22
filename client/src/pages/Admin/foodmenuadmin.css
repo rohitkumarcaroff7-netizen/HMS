@@ -1,0 +1,228 @@
+/* ============================================================
+   Food Menu Admin — foodmenuadmin.css
+   Mirrors the design language of eventsadmin.css
+   ============================================================ */
+
+.fma-page {
+  padding: 10px;
+}
+
+.fma-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Header --- */
+.fma-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.fma-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.fma-header p {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.fma-save-btn {
+  padding: 9px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 13px;
+  background: linear-gradient(90deg, #1d4ed8 0%, #3b82f6 100%);
+  color: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.fma-save-btn:hover:not(:disabled) {
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+}
+
+.fma-save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- Status messages --- */
+.fma-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #dc2626;
+  font-size: 13px;
+}
+
+.fma-loading {
+  padding: 16px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* --- Body (tabs + form) --- */
+.fma-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Day Tabs --- */
+.fma-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.fma-tab {
+  padding: 7px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.fma-tab:hover {
+  background: #e0e7ff;
+  border-color: #818cf8;
+  color: #4338ca;
+}
+
+.fma-tab--active {
+  background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+}
+
+/* --- Meal Form Card --- */
+.fma-form-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.fma-day-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 14px;
+}
+
+.fma-meal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.fma-meal-field label {
+  display: block;
+  font-size: 12px;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.fma-input {
+  width: 100%;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid #cbd5f5;
+  background: #f8fafc;
+  font-size: 13px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.fma-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+  background: #ffffff;
+}
+
+/* --- Preview Grid --- */
+.fma-preview h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.fma-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.fma-preview-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.fma-preview-card:hover {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.fma-preview-card--active {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.fma-preview-day {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1d4ed8;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.fma-preview-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fma-preview-card li {
+  font-size: 11px;
+  color: #334155;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fma-empty-meal {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .fma-meal-grid {
+    grid-template-columns: 1fr;
+  }
+}

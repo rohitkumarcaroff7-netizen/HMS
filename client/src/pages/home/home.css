@@ -1,0 +1,200 @@
+.home-page {
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 20px 64px;
+}
+
+.home-page .intro {
+ 
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.home-page .desc {
+  display: flex;
+  justify-content: center;
+  width: 52%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.home-page .img {
+  width: 48%;
+}
+
+.home-page .choose {
+  display: flex;
+  justify-content: center;
+  margin: 48px auto 24px;
+  background-color:#D5E6FB;
+  
+}
+
+.home-page .container2 {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 0 auto 72px;
+  padding: 25px;
+   background-color: #f3f3f3;
+}
+
+.home-page .why {
+  background-color: #0d2136;
+  padding: 24px;
+}
+
+.home-page .container3 {
+  margin: 40px auto 50px;
+  border-top: 1px solid #ddd;
+  max-width: 1200px;
+  padding-top: 16px;
+}
+
+.home-page .join {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 90px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.home-page .explore {
+  margin-top: 12px;
+  
+}
+
+.home-page .expbtn {
+  padding: 10px 14px;
+  
+  box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.105);
+  color: rgb(255, 255, 255);
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  background-color: rgba(0, 0, 0, 0.788);
+  
+}
+
+.home-page .expbtn:hover {
+  color: rgb(0, 0, 0);
+  box-shadow: 1px 1px 3px rgb(128, 128, 128);
+  background-color: rgb(227, 177, 16);
+}
+.satyasir{
+  border-radius: 10px;
+}
+.srutimam{
+  border-radius: 10px;
+}
+
+.home-page .rules {
+  margin: 0 auto;
+  border-top: 1px solid #ddd;
+  display: flex;
+  padding: 12px;
+  max-width: 1200px;
+  height: auto;
+}
+
+.home-page .ruleSection {
+  max-width: 1200px;
+  margin: 16px auto 0;
+}
+.home-page .ruleSection h2 {
+  color:#2203ac;
+  font-weight: bold;
+}
+
+.home-page .rulepoints {
+  margin-left: 25px;
+}
+
+.home-page .rp {
+  font-size: small;
+}
+
+.home-page .rulebox {
+  margin-top: 10px;
+}
+
+@media (max-width: 1024px) {
+  .home-page .intro {
+    min-height: auto;
+  }
+
+  .home-page .container3 {
+    gap: 20px !important;
+    height: auto !important;
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .home-page .container3 > div {
+    width: 100% !important;
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 12px 12px 40px;
+  }
+
+  .home-page .intro {
+    flex-direction: column;
+    padding: 12px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .home-page .desc,
+  .home-page .img,
+  .home-page .container2 > div:first-child,
+  .home-page .why,
+  .home-page .rulepoints,
+  .home-page .rulebox,
+  .home-page .warden > div {
+    width: 100% !important;
+  }
+
+  .home-page .desc {
+    margin-left: 0;
+  }
+
+  .home-page .container2 {
+    flex-direction: column;
+    margin-bottom: 44px;
+  }
+
+  .home-page .principal img {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+  }
+
+  .home-page .ruleSection {
+    flex-direction: column;
+    gap: 18px !important;
+  }
+
+  .home-page .warden {
+    flex-direction: column;
+  }
+}
+.Cbtn{
+  padding: 7px;
+ padding-left: 14px;
+ padding-right: 14px;
+  margin-top: 20px;
+}
+.sinfo{
+  padding: 10px;
+}

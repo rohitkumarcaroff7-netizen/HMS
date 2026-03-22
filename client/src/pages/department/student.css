@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+
+.student-details-page {
+  min-height: calc(100vh - 120px);
+  padding: 20px;
+  background: radial-gradient(1100px 520px at 5% 0%, #f1f6ff 0%, #eef2ff 35%, #f9fafb 100%);
+  font-family: "Manrope", sans-serif;
+}
+
+.student-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.remdr {
+ background-color: #0f172a62;
+  padding: 4px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 1%;
+}
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.student-header h1 {
+  font-size: clamp(22px, 2.4vw, 30px);
+}
+
+.student-header p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.student-stats {
+  display: flex;
+  gap: 12px;
+}
+
+.student-stats .stat {
+  background: #ffffff;
+  border: 1px solid #101925;
+  padding: 8px 14px;
+ 
+  text-align: center;
+  min-width: 90px;
+  
+}
+
+.student-stats .stat span {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.student-stats .stat strong {
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.student-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  border: 1px solid #cbd5f5;
+  background: #ffffff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+  background: #1d4ed8;
+  color: white;
+  border-color: #1d4ed8;
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 15px;
+}
+
+.student-card {
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  display: flex;
+  gap: 17px;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  width: 270px;
+}
+
+.student-avatar {
+  width: 56px;
+  height: 56px;
+  
+  object-fit: cover;
+  border: 2px solid #dbeafe;
+}
+
+.student-info {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: #475569;
+}
+
+.student-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+@media (max-width: 720px) {
+  .student-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

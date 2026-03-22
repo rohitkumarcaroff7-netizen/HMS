@@ -1,0 +1,105 @@
+.fna-page {
+  padding: 12px;
+}
+
+.fna-shell {
+  max-width: 640px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.fna-header h1 {
+  font-size: 1.35rem;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.fna-header p {
+  color: #475569;
+  margin-bottom: 18px;
+  font-size: 0.92rem;
+}
+
+.fna-form {
+  display: grid;
+  gap: 14px;
+}
+
+.fna-field {
+  display: grid;
+  gap: 6px;
+}
+
+.fna-field label {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.92rem;
+}
+
+.fna-input,
+.fna-textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #0f172a;
+  background: #f8fafc;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.fna-textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.fna-help {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.fna-submit {
+  width: fit-content;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #0f766e;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.fna-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.fna-error {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
+.fna-loading {
+  color: #334155;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 640px) {
+  .fna-page {
+    padding: 8px;
+  }
+
+  .fna-shell {
+    padding: 14px;
+    border-radius: 12px;
+  }
+}

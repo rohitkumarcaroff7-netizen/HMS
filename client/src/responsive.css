@@ -1,0 +1,336 @@
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .navbar .logo {
+    height: auto;
+    min-height: 90px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .navbar #imitlogo {
+    margin-left: 0 !important;
+  }
+
+  .navbar #hs {
+    margin-left: 0 !important;
+  }
+
+  .navbar .navdiv {
+    margin: 10px 14px;
+  }
+
+  .navbar .navul {
+    gap: 18px;
+    margin-right: 0;
+    padding: 0 8px;
+  }
+
+  .footer-main {
+    height: auto !important;
+    padding: 20px 14px;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .footerleft,
+  .footerright {
+    width: 100% !important;
+  }
+
+  .add {
+    width: 100% !important;
+    margin-left: 0;
+    height: auto;
+  }
+
+  .student-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .room-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .userdetails .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .food-notice-page .fn,
+  .food-notice-page .rightph {
+    width: min(100%, 640px) !important;
+  }
+
+  .hostels-page .rm {
+    gap: 24px;
+  }
+
+  .fee-structure-page {
+    height: auto !important;
+    padding-bottom: 32px;
+  }
+
+  .fee-structure-page .fcontainer {
+    height: auto !important;
+    align-items: stretch !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .logo {
+    font-size: 60%;
+  }
+
+  .navbar .btns {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .navbar .navdiv {
+    flex-direction: column;
+    height: auto;
+    gap: 6px;
+  }
+
+  .navbar .navleft,
+  .navbar .navright {
+    width: 100%;
+  }
+
+  .navbar .navul {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 16px;
+    padding: 0 10px 8px;
+  }
+
+  .navbar .navul li {
+    flex: 0 0 auto;
+  }
+
+  .navbar .dropdown-content {
+    min-width: 140px;
+  }
+
+  .login-page,
+  .signup-page,
+  .contact-page,
+  .complain-page,
+  .event-page,
+  .room-page,
+  .student-details-page,
+  .food-notice-page,
+  .fee-structure-page {
+    height: auto !important;
+    min-height: calc(100vh - 120px);
+    padding: 14px 10px;
+  }
+
+  .login-card {
+    width: min(100%, 420px) !important;
+    height: auto !important;
+    padding: 20px 16px !important;
+  }
+
+  .signup-card {
+    width: min(100%, 720px) !important;
+    height: auto !important;
+    padding: 20px 14px !important;
+  }
+
+  .signup-form {
+    width: 100% !important;
+  }
+
+  .contact-card {
+    width: min(100%, 700px) !important;
+    height: auto !important;
+  }
+
+  .contact-form-wrap {
+    width: 100% !important;
+    padding: 18px !important;
+  }
+
+  .complain-card {
+    width: min(100%, 680px) !important;
+    height: auto !important;
+    padding: 16px !important;
+  }
+
+  .student-details-page {
+    flex-direction: column;
+  }
+
+  .student-filter {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .student-filter ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .student-grid {
+    margin-left: 0 !important;
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  .student-grid > div {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .room-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .room-grid .getroom {
+    width: 100% !important;
+  }
+
+  .food-notice-page .transparent-bg {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .food-notice-page .transparent-bg::before {
+    height: 100%;
+  }
+
+  .food-notice-page .transparent-bg > div,
+  .food-notice-page .right {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .food-notice-page .fn {
+    height: auto !important;
+    margin-top: 16px !important;
+    padding: 14px;
+  }
+
+  .food-notice-page .rightph {
+    height: auto !important;
+    padding: 10px;
+  }
+
+  .fee-structure-page .fcontainer {
+    flex-direction: column;
+    margin: 12px;
+    padding: 14px;
+    gap: 16px;
+  }
+
+  .fee-structure-page .str,
+  .fee-structure-page .fee {
+    width: 100% !important;
+  }
+
+  .fee-structure-page .hta {
+    margin: 16px 12px !important;
+    padding: 12px;
+  }
+
+  .applybtn,
+  .applybtnr {
+    margin-left: 0 !important;
+    margin-inline: auto;
+    display: block;
+  }
+
+  .event-container {
+    width: 100% !important;
+    padding: 0 8px;
+  }
+
+  .event-container .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .event-container .grid > div {
+    height: auto !important;
+    align-items: flex-start !important;
+    padding: 12px;
+  }
+
+  .hostels-page .con1,
+  .hostels-page .rm {
+    flex-direction: column;
+    margin: 12px;
+    gap: 16px;
+  }
+
+  .hostels-page .hostelspec {
+    margin: 12px;
+    padding: 14px;
+    height: auto !important;
+  }
+
+  .hostels-page .rm > div,
+  .hostels-page .w-\[60\%\] {
+    width: 100% !important;
+  }
+
+  .userdetails {
+    margin-left: 0 !important;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  .userdetails .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .detailcard {
+    width: 100% !important;
+    height: auto;
+  }
+
+  table {
+    display: block;
+    width: 100% !important;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .logo {
+    font-size: 54%;
+  }
+
+  .navbar .hostelname {
+    font-size: 12px;
+  }
+
+  .student-filter ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .room-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .copyright {
+    height: auto !important;
+    text-align: center;
+    padding: 8px;
+  }
+}

@@ -1,0 +1,162 @@
+.navbar .navbar-container {
+  margin: 0;
+}
+
+.navbar #hs {
+  margin-left: 35px;
+}
+
+.navbar .btn {
+  padding: 5px;
+  margin-left: 8px;
+  width: 70px;
+  box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.105);
+  color: rgb(215, 215, 215);
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  background-color: #155dfc;
+}
+
+.navbar .btn:hover {
+  color: rgb(255, 255, 255);
+  background-color: #358ff7;
+  box-shadow: 1px 1px 3px rgb(128, 128, 128);
+}
+
+.navbar .logo {
+  font-size: 67.5%;
+  background-color: #0d2136;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  border-bottom: 1px solid rgba(206, 206, 206, 0.408);
+}
+
+.navbar #imitlogo {
+  margin-left: 40px;
+}
+
+.navbar .btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 24px;
+}
+
+.navbar .navul > li {
+  font-size: small;
+  list-style-type: none;
+}
+
+.navbar .navul a {
+  text-decoration: none;
+  color: rgb(230, 230, 230);
+}
+
+.navbar .navul a:hover {
+  color: rgba(180, 180, 180, 0.904);
+}
+
+.navbar .navul {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 7px;
+  gap: 40px;
+  margin-right: 18px;
+}
+
+.navbar .hostelname {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 85.5%;
+  white-space: nowrap;
+  padding-inline: 20px;
+}
+
+.navbar .ticker {
+  overflow: hidden;
+  width: 100%;
+}
+
+.navbar .ticker .hostelname {
+  animation: navbar-ticker 16s linear infinite;
+}
+
+@keyframes navbar-ticker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.navbar .navleft {
+  height: 100%;
+  width: 50%;
+  background-color: #000000;
+  color: white;
+  border: 1px solid #0000003b;
+  letter-spacing: 0.2px;
+}
+
+.navbar .navright {
+  height: 100%;
+  width: 50%;
+  background-color: #1c398e;
+  border-bottom: 2px solid #0d0d0d14;
+}
+
+.navbar .navdiv {
+  height: 35px;
+  display: flex;
+  gap: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.navbar .dropbtn {
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 30;
+}
+
+.navbar .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.navbar .dropdown-content a:hover {
+  background-color:#E3B110;
+  color: rgb(0, 0, 0);
+  border-radius: 3px;
+  border-right: 10px solid #034795;
+}
+
+.navbar .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar .ticker .hostelname {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,29 @@
+.transparent-bg {
+    position: relative;
+  
+  }
+  
+  .transparent-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:500px;
+    background: url('h3.avif') no-repeat center center;
+    background-size: cover;
+    opacity: 0.1;
+   
+  }
+  /* .Rside{
+   background-color: black;
+  
+  }
+  */
+    
+ .fn{
+  margin-top: 100px;
+ }
+ .rightph{
+  margin-top: 40px;
+ }

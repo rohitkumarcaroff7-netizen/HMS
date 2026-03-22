@@ -1,0 +1,13 @@
+# Mac OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# General
+node_modules/
+.env

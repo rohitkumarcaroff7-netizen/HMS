@@ -1,0 +1,16 @@
+.eventUl{
+    padding: 7px;
+    gap:20px;
+   
+}
+.eventLi{
+    padding: 5px;
+  gap: 10px;
+
+
+    cursor: pointer;
+   
+}
+.desci{
+    margin-top: 20px;
+}
