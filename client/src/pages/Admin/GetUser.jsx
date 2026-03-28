@@ -3,6 +3,8 @@ import { useAuth } from "../../store/auth";
 import "./getuser.css"
 const GetUser = () => {
   const [user, setUser] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState("All");
+  const [selectedYear, setSelectedYear] = useState("All");
   const { token } = useAuth();
   const getUser = useCallback(async () => {
     try {
@@ -40,6 +42,16 @@ const GetUser = () => {
   useEffect(() => {
     getUser();
   }, [getUser]);
+
+  const courseOptions = ["All", ...new Set(user.map((item) => item.course).filter(Boolean))];
+  const yearOptions = ["All", ...new Set(user.map((item) => item.st_yr).filter(Boolean))];
+
+  const filteredUsers = user.filter((item) => {
+    const matchesCourse = selectedCourse === "All" || item.course === selectedCourse;
+    const matchesYear = selectedYear === "All" || item.st_yr === selectedYear;
+    return matchesCourse && matchesYear;
+  });
+
   return (
     <div className="user-page">
       <div className="userdetails">
@@ -48,11 +60,43 @@ const GetUser = () => {
             <h1 className="dhead">User Details</h1>
             <p className="user-sub">Scroll horizontally to browse all users.</p>
           </div>
-          <div className="user-count">{user.length} users</div>
+          <div className="user-count">{filteredUsers.length} users</div>
+        </div>
+
+        <div className="user-filters">
+          <div className="filter-group">
+            <label htmlFor="courseFilter">Course</label>
+            <select
+              id="courseFilter"
+              value={selectedCourse}
+              onChange={(e) => setSelectedCourse(e.target.value)}
+            >
+              {courseOptions.map((course) => (
+                <option key={course} value={course}>
+                  {course}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="filter-group">
+            <label htmlFor="yearFilter">Year of Study</label>
+            <select
+              id="yearFilter"
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+            >
+              {yearOptions.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="user-list">
-          {user.map((item, index) => (
+          {filteredUsers.map((item, index) => (
             <div key={index} className="detailcard user-card">
               <div className="user-card-body">
                 <img src={item.photoUrl} alt={item.username} className="user-avatar" />

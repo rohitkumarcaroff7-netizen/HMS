@@ -1,6 +1,5 @@
 import {User} from '../models/user-models.js'
 import { Complain } from '../models/complain-model.js';
-import { Room } from '../models/room_model.js';
 import { Contact } from "../models/contact-model.js";
 
 export const getAllUser = async (req, res) => {
@@ -76,14 +75,32 @@ export const deleteComplain = async(req,res)=>{
 
 export const getPaymentDetails = async (req, res) => {
   try {
-    const bookedRooms = await Room.find({
-      isAvailable: false,
-      stu_id: { $ne: null },
-    })
-      .populate("stu_id", "username email regd_no phone course st_yr")
-      .sort({ room_no: 1 });
+    const users = await User.find({ role: { $ne: "admin" } })
+      .select("username email regd_no phone course st_yr purchasedRoom")
+      .populate("purchasedRoom", "room_no price isAvailable")
+      .sort({ regd_no: 1 });
 
-    res.status(200).json(bookedRooms);
+    const paymentDetails = users.map((user) => {
+      const room = user.purchasedRoom;
+
+      return {
+        _id: user._id,
+        paymentStatus: room ? "Paid" : "Unpaid",
+        room_no: room?.room_no ?? null,
+        price: room?.price ?? null,
+        stu_id: {
+          _id: user._id,
+          username: user.username,
+          email: user.email,
+          regd_no: user.regd_no,
+          phone: user.phone,
+          course: user.course,
+          st_yr: user.st_yr,
+        },
+      };
+    });
+
+    res.status(200).json(paymentDetails);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Server Error" });

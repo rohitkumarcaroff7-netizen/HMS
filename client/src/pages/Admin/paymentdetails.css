@@ -32,6 +32,35 @@
   font-size: 12px;
 }
 
+.payment-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.payment-filter-btn {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-filter-btn:hover {
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+.payment-filter-btn.active {
+  background: #dbeafe;
+  border-color: #60a5fa;
+  color: #1d4ed8;
+}
+
 .payment-empty {
   padding: 20px;
   border-radius: 8px;
@@ -83,10 +112,18 @@
 .payment-status {
   font-size: 11px;
   font-weight: 600;
-  color: #15803d;
-  background: #dcfce7;
   padding: 4px 8px;
   border-radius: 999px;
+}
+
+.payment-status.paid {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.payment-status.unpaid {
+  color: #b45309;
+  background: #fef3c7;
 }
 
 .payment-details {

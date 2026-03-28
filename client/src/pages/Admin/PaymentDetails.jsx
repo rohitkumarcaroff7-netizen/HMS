@@ -4,6 +4,7 @@ import "./paymentdetails.css";
 
 const PaymentDetails = () => {
   const [payments, setPayments] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const { token } = useAuth();
 
   const getPayments = useCallback(async () => {
@@ -25,6 +26,22 @@ const PaymentDetails = () => {
     getPayments();
   }, [getPayments]);
 
+  const filteredPayments = payments.filter((item) => {
+    if (selectedCategory === "Paid") {
+      return item.paymentStatus === "Paid";
+    }
+
+    if (selectedCategory === "Unpaid") {
+      return item.paymentStatus === "Unpaid";
+    }
+
+    if (selectedCategory === "Booked") {
+      return item.room_no !== null && item.room_no !== undefined;
+    }
+
+    return true;
+  });
+
   return (
     <div className="payment-page">
       <div className="payment-shell">
@@ -33,23 +50,59 @@ const PaymentDetails = () => {
             <h1>Payment Details</h1>
             <p>Booked rooms and student payment records.</p>
           </div>
-          <div className="payment-count">{payments.length} records</div>
+          <div className="payment-count">{filteredPayments.length} records</div>
         </div>
 
-        {payments.length === 0 ? (
-          <div className="payment-empty">No payment records yet.</div>
+        <div className="payment-filters">
+          <button
+            className={`payment-filter-btn ${selectedCategory === "All" ? "active" : ""}`}
+            onClick={() => setSelectedCategory("All")}
+          >
+            All
+          </button>
+          <button
+            className={`payment-filter-btn ${selectedCategory === "Paid" ? "active" : ""}`}
+            onClick={() => setSelectedCategory("Paid")}
+          >
+            Paid Users
+          </button>
+          <button
+            className={`payment-filter-btn ${selectedCategory === "Unpaid" ? "active" : ""}`}
+            onClick={() => setSelectedCategory("Unpaid")}
+          >
+            Unpaid Users
+          </button>
+          <button
+            className={`payment-filter-btn ${selectedCategory === "Booked" ? "active" : ""}`}
+            onClick={() => setSelectedCategory("Booked")}
+          >
+            Booked Room Details
+          </button>
+        </div>
+
+        {filteredPayments.length === 0 ? (
+          <div className="payment-empty">
+            {selectedCategory === "All"
+              ? "No payment records yet."
+              : selectedCategory === "Booked"
+                ? "No booked room details found."
+                : `No ${selectedCategory.toLowerCase()} users found.`}
+          </div>
         ) : (
           <div className="payment-list">
-            {payments.map((item) => {
+            {filteredPayments.map((item) => {
               const student = item.stu_id || {};
+              const isPaid = item.paymentStatus === "Paid";
               return (
                 <div key={item._id} className="payment-card">
                   <div className="payment-card-header">
                     <div>
-                      <h2>Room {item.room_no}</h2>
-                      <p>Price: {item.price} INR</p>
+                      <h2>{isPaid ? `Room ${item.room_no}` : "Room not assigned"}</h2>
+                      <p>{isPaid ? `Price: ${item.price} INR` : "Price: Not paid yet"}</p>
                     </div>
-                    <span className="payment-status">Paid</span>
+                    <span className={`payment-status ${isPaid ? "paid" : "unpaid"}`}>
+                      {item.paymentStatus}
+                    </span>
                   </div>
                   <div className="payment-details">
                     <div>
