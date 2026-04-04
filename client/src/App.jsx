@@ -38,6 +38,7 @@ import PaymentDetails from "./pages/Admin/PaymentDetails.jsx";
 import EventsAdmin from "./pages/Admin/EventsAdmin.jsx";
 import FoodMenuAdmin from "./pages/Admin/FoodMenuAdmin.jsx";
 import FoodNoticeAdmin from "./pages/Admin/FoodNoticeAdmin.jsx";
+import FeeTableAdmin from "./pages/Admin/FeeTableAdmin.jsx";
 
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
                 <Route path="events" element={<EventsAdmin />} />
                 <Route path="foodmenu" element={<FoodMenuAdmin />} />
                 <Route path="foodnotice" element={<FoodNoticeAdmin />} />
+                <Route path="fee_table" element={<FeeTableAdmin />} />
               </>
             )}
           </Route>

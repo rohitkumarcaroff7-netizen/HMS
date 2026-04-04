@@ -63,6 +63,12 @@ const AdminLayout = () => {
           >
             Food Notice
           </NavLink>
+          <NavLink
+            to="fee_table"
+            className={({ isActive }) => `admin-link ${isActive ? "active" : ""}`}
+          >
+            Fee Table
+          </NavLink>
         </nav>
       </aside>
 

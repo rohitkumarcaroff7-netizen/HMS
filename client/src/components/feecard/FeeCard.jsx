@@ -1,15 +1,13 @@
+import { useEffect, useState } from "react";
+import {
+  calculateTotalAmount,
+  defaultFeeStructure,
+  FEE_STRUCTURE_API,
+  normalizeFeeStructure,
+} from "./feeStructureData";
+
 const FeeStructureTable = () => {
-  const feeDetails = [
-    {
-      messadv: 15000,
-      seatrent: 8000,
-      electricityfee: 3600,
-      devfee: 2000,
-      cmoney: 1000,
-      comcharge: 200,
-      tamount: 29800,
-    },
-  ];
+  const [feeStructure, setFeeStructure] = useState(defaultFeeStructure);
 
   const asINR = (value) =>
     new Intl.NumberFormat("en-IN", {
@@ -17,6 +15,26 @@ const FeeStructureTable = () => {
       currency: "INR",
       maximumFractionDigits: 0,
     }).format(value);
+
+  useEffect(() => {
+    const fetchFeeStructure = async () => {
+      try {
+        const res = await fetch(FEE_STRUCTURE_API);
+        const data = await res.json().catch(() => null);
+
+        if (!res.ok) {
+          throw new Error(data?.message || "Failed to load fee structure.");
+        }
+
+        setFeeStructure(normalizeFeeStructure(data));
+      } catch (error) {
+        console.log(error);
+        setFeeStructure(defaultFeeStructure);
+      }
+    };
+
+    fetchFeeStructure();
+  }, []);
 
   return (
     <div className="rounded-lg border border-slate-200 bg-white shadow-sm h-20 w-full max-w-3xl mx-auto mt-5">
@@ -57,19 +75,17 @@ const FeeStructureTable = () => {
           </tr>
         </thead>
         <tbody>
-          {feeDetails.map((item, index) => (
-            <tr key={index} className="text-center hover:bg-slate-50">
-              <td className="border border-slate-200 px-1 py-3">{asINR(item.messadv)}</td>
-              <td className="border border-slate-200 px-1 py-3">{asINR(item.seatrent)}</td>
-              <td className="border border-slate-200 px-1 py-3">{asINR(item.electricityfee)}</td>
-              <td className="border border-slate-200 px-1 py-3">{asINR(item.devfee)}</td>
-              <td className="border border-slate-200 px-1 py-3">{asINR(item.cmoney)}</td>
-              <td className="border border-slate-200 px-1 py-3">{asINR(item.comcharge)}</td>
+          <tr className="text-center hover:bg-slate-50">
+              <td className="border border-slate-200 px-1 py-3">{asINR(feeStructure.messadv)}</td>
+              <td className="border border-slate-200 px-1 py-3">{asINR(feeStructure.seatrent)}</td>
+              <td className="border border-slate-200 px-1 py-3">{asINR(feeStructure.electricityfee)}</td>
+              <td className="border border-slate-200 px-1 py-3">{asINR(feeStructure.devfee)}</td>
+              <td className="border border-slate-200 px-1 py-3">{asINR(feeStructure.cmoney)}</td>
+              <td className="border border-slate-200 px-1 py-3">{asINR(feeStructure.comcharge)}</td>
               <td className="border border-slate-200 bg-amber-50 px-1 py-3 font-semibold">
-                {asINR(item.tamount)}
+                {asINR(calculateTotalAmount(feeStructure))}
               </td>
             </tr>
-          ))}
         </tbody>
       </table>
     </div>

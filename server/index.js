@@ -11,6 +11,7 @@ import contactRoute from "./routes/contactRoute.js";
 import foodMenuRoute from "./routes/foodmenu-router.js";
 import eventRoute from "./routes/event-router.js";
 import foodNoticeRoute from "./routes/foodnotice-router.js";
+import feeStructureRoute from "./routes/feestructure-router.js";
 // import studentRouter from './routes/student-route.js';
 import cors from "cors";
 
@@ -49,6 +50,7 @@ app.use("/api/contact", contactRoute);
 app.use("/api/foodmenu", foodMenuRoute);
 app.use("/api/events", eventRoute);
 app.use("/api/foodnotice", foodNoticeRoute);
+app.use("/api/feestructure", feeStructureRoute);
 // app.use("/api/getStudents", studentRouter);
 
 // Start the server
