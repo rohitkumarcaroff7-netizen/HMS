@@ -97,7 +97,16 @@ const PaymentDetails = () => {
                 <div key={item._id} className="payment-card">
                   <div className="payment-card-header">
                     <div>
-                      <h2>{isPaid ? `Room ${item.room_no}` : "Room not assigned"}</h2>
+                      <h2 className="payment-room-title">
+                        {isPaid ? (
+                          <>
+                            <span className="payment-room-label">Room</span>
+                            <span className="payment-room-number">{item.room_no}</span>
+                          </>
+                        ) : (
+                          "Room not assigned"
+                        )}
+                      </h2>
                       <p>{isPaid ? `Price: ${item.price} INR` : "Price: Not paid yet"}</p>
                     </div>
                     <span className={`payment-status ${isPaid ? "paid" : "unpaid"}`}>
