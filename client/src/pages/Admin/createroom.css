@@ -59,6 +59,74 @@
   gap: 14px;
 }
 
+.booked-student-panel {
+  display: grid;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.booked-student-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.booked-student-header p {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.booked-student-card {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.booked-student-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.booked-student-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 2px solid #bfdbfe;
+  background: #ffffff;
+}
+
+.booked-student-top h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.booked-student-top p {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #475569;
+}
+
+.booked-student-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.booked-student-grid p {
+  font-size: 13px;
+  color: #334155;
+}
+
+.booked-student-address {
+  line-height: 1.5;
+}
+
 .create-room-field {
   display: grid;
   gap: 6px;
@@ -117,6 +185,21 @@
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.room-status-item:hover {
+  transform: translateY(-1px);
+  border-color: #93c5fd;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.08);
+}
+
+.room-status-item.active {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 .room-status-item h3 {

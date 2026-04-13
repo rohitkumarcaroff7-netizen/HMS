@@ -4,6 +4,7 @@ const CreateRoom = () => {
     const [room, setRoom] = useState({room_no:"",price:""})
     const [rooms, setRooms] = useState([])
     const [isLoadingRooms, setIsLoadingRooms] = useState(true)
+    const [selectedRoom, setSelectedRoom] = useState(null)
     const handleChange =(e)=>{
         setRoom({...room, [e.target.name]:e.target.value})
     }
@@ -14,7 +15,17 @@ const CreateRoom = () => {
                 method:"GET"
             })
             const data = await res.json()
-            setRooms(data.rooms || [])
+            const fetchedRooms = data.rooms || []
+            setRooms(fetchedRooms)
+            setSelectedRoom((currentSelectedRoom) => {
+                if (!currentSelectedRoom) {
+                    return null
+                }
+
+                return (
+                    fetchedRooms.find((item) => item._id === currentSelectedRoom._id) || null
+                )
+            })
         } catch (error) {
             console.log(error)
         } finally {
@@ -82,6 +93,43 @@ const CreateRoom = () => {
             </div>
             <button className="createroombtn" type="submit">Add Room</button>
           </form>
+
+          <div className="booked-student-panel">
+            <div className="booked-student-header">
+              <h2>Booked Student Details</h2>
+              <p>Click a booked room from the list to view the student details here.</p>
+            </div>
+
+            {!selectedRoom ? (
+              <p className="room-status-empty">Select a booked room to see student details.</p>
+            ) : selectedRoom.isAvailable ? (
+              <p className="room-status-empty">This room is currently available and has no student assigned.</p>
+            ) : (
+              <div className="booked-student-card">
+                <div className="booked-student-top">
+                  <img
+                    src={selectedRoom.stu_id?.photoUrl}
+                    alt={selectedRoom.stu_id?.username}
+                    className="booked-student-avatar"
+                  />
+                  <div>
+                    <h3>{selectedRoom.stu_id?.username || "N/A"}</h3>
+                    <p>Room {selectedRoom.room_no}</p>
+                  </div>
+                </div>
+
+                <div className="booked-student-grid">
+                  <p><strong>Registration No:</strong> {selectedRoom.stu_id?.regd_no || "N/A"}</p>
+                  <p><strong>Email:</strong> {selectedRoom.stu_id?.email || "N/A"}</p>
+                  <p><strong>Phone:</strong> {selectedRoom.stu_id?.phone || "N/A"}</p>
+                  <p><strong>Course:</strong> {selectedRoom.stu_id?.course || "N/A"}</p>
+                  <p><strong>Year:</strong> {selectedRoom.stu_id?.st_yr || "N/A"}</p>
+                  <p><strong>Gender:</strong> {selectedRoom.stu_id?.gender || "N/A"}</p>
+                  <p className="booked-student-address"><strong>Address:</strong> {selectedRoom.stu_id?.address || "N/A"}</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="room-status-card">
@@ -100,7 +148,12 @@ const CreateRoom = () => {
               <p className="room-status-empty">No rooms created yet.</p>
             ) : (
               rooms.map((item) => (
-                <div key={item._id} className="room-status-item">
+                <button
+                  key={item._id}
+                  type="button"
+                  className={`room-status-item ${selectedRoom?._id === item._id ? "active" : ""}`}
+                  onClick={() => setSelectedRoom(item)}
+                >
                   <div>
                     <h3>Room {item.room_no}</h3>
                     <p>Price: Rs. {item.price}</p>
@@ -113,7 +166,7 @@ const CreateRoom = () => {
                   >
                     {item.isAvailable ? "Available" : "Booked"}
                   </span>
-                </div>
+                </button>
               ))
             )}
           </div>

@@ -12,7 +12,10 @@ export const createRoom = async(req,res)=>{
 
 export const getAllRooms = async(req,res)=>{
     try {
-        const rooms = await Room.find().populate("stu_id", "regd_no");
+        const rooms = await Room.find().populate(
+            "stu_id",
+            "username email regd_no phone course st_yr address gender photoUrl"
+        );
         if(!rooms){
             return res.status(404).json({msg:"Room not found."})
         }
