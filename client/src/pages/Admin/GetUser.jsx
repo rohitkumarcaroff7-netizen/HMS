@@ -5,6 +5,7 @@ const GetUser = () => {
   const [user, setUser] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
   const { token } = useAuth();
   const getUser = useCallback(async () => {
     try {
@@ -49,7 +50,13 @@ const GetUser = () => {
   const filteredUsers = user.filter((item) => {
     const matchesCourse = selectedCourse === "All" || item.course === selectedCourse;
     const matchesYear = selectedYear === "All" || item.st_yr === selectedYear;
-    return matchesCourse && matchesYear;
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+    const matchesSearch =
+      normalizedSearch === "" ||
+      item.username?.toLowerCase().includes(normalizedSearch) ||
+      item.regd_no?.toLowerCase().includes(normalizedSearch);
+
+    return matchesCourse && matchesYear && matchesSearch;
   });
 
   return (
@@ -92,6 +99,17 @@ const GetUser = () => {
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className="filter-group search-group">
+            <label htmlFor="userSearch">Search User</label>
+            <input
+              id="userSearch"
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search by username or registration ID"
+            />
           </div>
         </div>
 
