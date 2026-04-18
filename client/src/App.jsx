@@ -22,6 +22,7 @@ import Hostels from "./pages/hostels/hostels.jsx";
 
 import { ComplaintForm } from "./pages/forms/Complain.jsx";
 import EventNoticePage from "./pages/notice/EventNoticePage.jsx";
+import EligibleStudentList from "./pages/notice/EligibleStudentList.jsx";
 
 import Success from "./pages/payment/Success.jsx";
 import Failed from "./pages/payment/Failed.jsx";
@@ -39,6 +40,7 @@ import EventsAdmin from "./pages/Admin/EventsAdmin.jsx";
 import FoodMenuAdmin from "./pages/Admin/FoodMenuAdmin.jsx";
 import FoodNoticeAdmin from "./pages/Admin/FoodNoticeAdmin.jsx";
 import FeeTableAdmin from "./pages/Admin/FeeTableAdmin.jsx";
+import EligibleStudentAdmin from "./pages/Admin/EligibleStudentAdmin.jsx";
 
 
 const App = () => {
@@ -63,6 +65,10 @@ const App = () => {
                 <Route path="foodmenu" element={<FoodMenuAdmin />} />
                 <Route path="foodnotice" element={<FoodNoticeAdmin />} />
                 <Route path="fee_table" element={<FeeTableAdmin />} />
+                <Route
+                  path="eligible_student_list"
+                  element={<EligibleStudentAdmin />}
+                />
               </>
             )}
           </Route>
@@ -88,6 +94,10 @@ const App = () => {
             element={role === "admin" ? <Navigate to="/" /> : <ComplaintForm />}
           />
           <Route path="/event_notice" element={<EventNoticePage />} />
+          <Route
+            path="/eligible-student-list"
+            element={<EligibleStudentList />}
+          />
           <Route path="/success" element={<Success />} />
           <Route path="/failed" element={<Failed />} />
           <Route path="/getAll" element={<GetRoom />} />

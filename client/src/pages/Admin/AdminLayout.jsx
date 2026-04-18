@@ -69,6 +69,12 @@ const AdminLayout = () => {
           >
             Fee Table
           </NavLink>
+          <NavLink
+            to="eligible_student_list"
+            className={({ isActive }) => `admin-link ${isActive ? "active" : ""}`}
+          >
+            Add Student List
+          </NavLink>
         </nav>
       </aside>
 

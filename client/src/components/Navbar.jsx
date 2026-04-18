@@ -85,6 +85,9 @@ export const Navbar = () => {
                         <NavLink to="/feestructure" className="dropbtn">
                           Fee structure
                         </NavLink>
+                        <NavLink to="/eligible-student-list" className="dropbtn">
+                          Eligible student list
+                        </NavLink>
                         <NavLink to="/event_notice" className="dropbtn">
                           Event Notice
                         </NavLink>
