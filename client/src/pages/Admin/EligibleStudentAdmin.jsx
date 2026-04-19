@@ -46,37 +46,7 @@ const EligibleStudentAdmin = () => {
     fetchEligibleStudents();
   }, [fetchEligibleStudents]);
 
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleAddStudent = (e) => {
-    e.preventDefault();
-
-    if (!form.name.trim() || !form.regd_no.trim()) {
-      setError("Student name and registration number are required.");
-      return;
-    }
-
-    setError("");
-    setStudents((prev) => [
-      ...prev,
-      {
-        _id: `${form.regd_no}-${Date.now()}`,
-        name: form.name.trim(),
-        regd_no: form.regd_no.trim(),
-        course: form.course,
-        st_yr: form.st_yr,
-      },
-    ]);
-    setForm(emptyForm);
-  };
-
-  const handleRemove = (indexToRemove) => {
-    setStudents((prev) => prev.filter((_, index) => index !== indexToRemove));
-  };
-
-  const handleSave = async () => {
+  const persistStudentList = async (nextTitle, nextStudents, successMessage) => {
     setSaving(true);
     setError("");
 
@@ -88,8 +58,8 @@ const EligibleStudentAdmin = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          title: title.trim() || "Eligible Student List",
-          students: students.map(({ name, regd_no, course, st_yr }) => ({
+          title: nextTitle.trim() || "Eligible Student List",
+          students: nextStudents.map(({ name, regd_no, course, st_yr }) => ({
             name,
             regd_no,
             course,
@@ -105,13 +75,61 @@ const EligibleStudentAdmin = () => {
 
       setTitle(data?.title || "Eligible Student List");
       setStudents(Array.isArray(data?.students) ? data.students : []);
-      toast.success("Eligible student list saved successfully.");
+
+      if (successMessage) {
+        toast.success(successMessage);
+      }
     } catch (err) {
       setError(err.message);
       toast.error(err.message);
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleChange = (e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleAddStudent = async (e) => {
+    e.preventDefault();
+
+    if (!form.name.trim() || !form.regd_no.trim()) {
+      setError("Student name and registration number are required.");
+      return;
+    }
+
+    setError("");
+    const nextStudents = [
+      ...students,
+      {
+        _id: `${form.regd_no}-${Date.now()}`,
+        name: form.name.trim(),
+        regd_no: form.regd_no.trim(),
+        course: form.course,
+        st_yr: form.st_yr,
+      },
+    ];
+
+    await persistStudentList(title, nextStudents, "Student saved to database.");
+    setForm(emptyForm);
+  };
+
+  const handleRemove = async (indexToRemove) => {
+    const nextStudents = students.filter((_, index) => index !== indexToRemove);
+    await persistStudentList(
+      title,
+      nextStudents,
+      "Student removed from database."
+    );
+  };
+
+  const handleSave = async () => {
+    await persistStudentList(
+      title,
+      students,
+      "Eligible student list saved successfully."
+    );
   };
 
   return (
