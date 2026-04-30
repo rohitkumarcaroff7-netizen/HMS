@@ -1,29 +1,211 @@
-.transparent-bg {
-    position: relative;
-  
+.food-notice-page {
+  min-height: calc(100vh - 120px);
+  padding: 24px 20px 48px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 28%),
+    linear-gradient(180deg, #fff8ef 0%, #f8efe2 48%, #f5f8fc 100%);
+}
+
+.food-notice-shell {
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.food-notice-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.7fr);
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+
+.food-notice-copy,
+.food-notice-highlight,
+.food-notice-panel,
+.food-menu-panel {
+  border: 1px solid rgba(157, 120, 83, 0.14);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 45px rgba(93, 67, 44, 0.08);
+}
+
+.food-notice-copy {
+  padding: 24px 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 243, 221, 0.95), rgba(255, 255, 255, 0.96)),
+    url("h3.avif") center/cover no-repeat;
+  background-blend-mode: screen;
+}
+
+.food-notice-badge,
+.food-panel-kicker,
+.food-highlight-label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(187, 115, 54, 0.12);
+  color: #a55225;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.food-notice-copy h1 {
+  margin: 12px 0 8px;
+  color: #1f2937;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.food-notice-copy p,
+.food-panel-header p,
+.food-notice-highlight p,
+.food-notice-item p,
+.food-empty-state {
+  color: #5f6877;
+  line-height: 1.65;
+}
+
+.food-notice-highlight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 22px 24px;
+  background: linear-gradient(180deg, #1f3b57 0%, #294c6f 100%);
+}
+
+.food-notice-highlight strong {
+  margin: 10px 0 6px;
+  color: #fff5e8;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.food-notice-highlight p {
+  color: rgba(245, 247, 250, 0.82);
+  margin: 0;
+}
+
+.food-highlight-label {
+  background: rgba(255, 255, 255, 0.12);
+  color: #f6dcc3;
+}
+
+.food-notice-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.42fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.food-notice-panel,
+.food-menu-panel {
+  padding: 22px;
+}
+
+.food-menu-panel {
+  position: sticky;
+  top: 18px;
+}
+
+.food-panel-header h2 {
+  margin: 10px 0 6px;
+  color: #18212c;
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.food-panel-header p {
+  margin: 0 0 16px;
+}
+
+.food-notice-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 62vh;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.food-notice-item {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+  border: 1px solid rgba(180, 191, 204, 0.4);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fffaf4 0%, #ffffff 100%);
+}
+
+.food-notice-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffddb7 0%, #ffc88e 100%);
+  color: #8a471d;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.food-notice-item p {
+  margin: 0;
+}
+
+.food-empty-state {
+  padding: 22px 18px;
+  border: 1px dashed rgba(165, 82, 37, 0.35);
+  border-radius: 18px;
+  background: #fffaf4;
+}
+
+@media (max-width: 960px) {
+  .food-notice-hero,
+  .food-notice-layout {
+    grid-template-columns: 1fr;
   }
-  
-  .transparent-bg::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height:500px;
-    background: url('h3.avif') no-repeat center center;
-    background-size: cover;
-    opacity: 0.1;
-   
+
+  .food-menu-panel {
+    position: static;
   }
-  /* .Rside{
-   background-color: black;
-  
+
+  .food-notice-list {
+    max-height: none;
+    overflow: visible;
   }
-  */
-    
- .fn{
-  margin-top: 100px;
- }
- .rightph{
-  margin-top: 40px;
- }
+}
+
+@media (max-width: 640px) {
+  .food-notice-page {
+    padding: 90px 12px 40px;
+  }
+
+  .food-notice-copy,
+  .food-notice-highlight,
+  .food-notice-panel,
+  .food-menu-panel {
+    border-radius: 22px;
+  }
+
+  .food-notice-copy,
+  .food-notice-highlight,
+  .food-notice-panel,
+  .food-menu-panel {
+    padding: 20px;
+  }
+
+  .food-notice-item {
+    grid-template-columns: 1fr;
+  }
+}
