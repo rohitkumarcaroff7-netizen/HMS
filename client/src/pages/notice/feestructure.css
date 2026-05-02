@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap");
 
 .fee-structure-page {
   min-height: calc(100vh - 120px);
@@ -6,7 +6,7 @@
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 30%),
     linear-gradient(135deg, #eff6ff 0%, #dbeafe 44%, #f8fbff 100%);
-  font-family: "Manrope", sans-serif;
+  font-family: "Mulish", sans-serif;
 }
 
 .fee-structure-shell {

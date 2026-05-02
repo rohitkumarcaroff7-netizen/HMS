@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap");
+
 .gallery-page {
   --paper: #f7efe1;
   --paper-deep: #eadfcf;
@@ -15,6 +17,7 @@
     radial-gradient(circle at bottom right, rgba(233, 190, 149, 0.35), transparent 26%),
     linear-gradient(180deg, #f5ead7 0%, #efe0cb 52%, #f6eee3 100%);
   border-top: 1px solid rgba(126, 82, 48, 0.16);
+  font-family: "Mulish", sans-serif;
 }
 
 .gallery-backdrop {
@@ -73,10 +76,9 @@
 .gallery-hero h2 {
   margin: 18px 0 12px;
   color: var(--ink);
-  font-size: clamp(2.4rem, 4vw, 4.3rem);
+  font-size: clamp(1.6rem, 2.4vw, 2.4rem);
   line-height: 0.98;
   letter-spacing: -0.04em;
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 .gallery-hero p {
@@ -214,7 +216,6 @@
   margin: 0;
   color: var(--ink);
   font-size: 1.2rem;
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 .gallery-caption p {
@@ -289,7 +290,6 @@
   color: #fff6ea;
   font-size: 2rem;
   line-height: 1.05;
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 .gallery-modal-details p {
@@ -381,7 +381,7 @@
   }
 
   .gallery-hero h2 {
-    font-size: 2.5rem;
+    font-size: 1.65rem;
   }
 
   .gallery-memory-wall {
