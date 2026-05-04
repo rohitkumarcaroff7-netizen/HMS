@@ -2,7 +2,7 @@ import StudentRegistration from "../signup/StudentRegistration"
 
 export const Hostel_enroll=()=>{
     
-    return   <div className="h-[670px] w-full">
+    return   <div className="w-full">
      
       <StudentRegistration />
       

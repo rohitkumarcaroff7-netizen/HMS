@@ -9,6 +9,16 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { storeTokenInLS } = useAuth();
+  const loginHighlights = [
+    "Access your hostel profile and room details",
+    "Track service requests and important updates",
+    "Stay connected with notices from the administration",
+  ];
+  const loginStats = [
+    { value: "Secure", label: "Protected student login access" },
+    { value: "Fast", label: "Quick access to key hostel services" },
+    { value: "Central", label: "One dashboard for hostel activity" },
+  ];
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -62,16 +72,25 @@ const Login = () => {
       <div className="login-grid">
         <div className="login-hero">
           <span className="login-badge">Student Access</span>
-          <h1>Welcome Back to IMIT <br /> Hostel Management System</h1> <br />
+          <h1>Welcome Back to IMIT Hostel Management System</h1>
           <p>
-            Log in to manage your hostel profile, track requests, and get updates
-            from the administration.
+            Sign in to manage your hostel profile, check room and request status,
+            and stay updated with important hostel notices.
           </p>
-          <ul>
-            <li>Secure access to your profile</li>
-            <li>Fast room booking and status</li>
-            <li>Instant notices and alerts</li>
+          <ul className="login-hero-list">
+            {loginHighlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
+
+          <div className="login-hero-stats">
+            {loginStats.map((item) => (
+              <div key={item.label} className="login-stat-card">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="login-card">
@@ -80,48 +99,54 @@ const Login = () => {
             <p>Use your registered email to continue.</p>
           </div>
           <form onSubmit={handleSubmit} className="login-form">
-            <div>
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="abc@example.com"
-                value={user.email}
-                onChange={handleChange}
-                className="login-input"
-              />
-            </div>
+            <section className="login-section">
+              <div className="login-section-head">
+                <h3>Account Access</h3>
+                <p>Enter the same credentials you used during hostel registration.</p>
+              </div>
 
-            <div className="relative">
-              <label htmlFor="password">Password</label>
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                id="password"
-                placeholder="********"
-                value={user.password}
-                onChange={handleChange}
-                className="login-input"
-              />
-              <span
-                onClick={() => setShowPassword(!showPassword)}
-                className="login-toggle"
-              >
-                {!showPassword ? (
-                  <p className="showhide text-sm">Show</p>
-                ) : (
-                  <p className="showhide text-sm">Hide</p>
-                )}
-              </span>
-            </div>
+              <div className="login-field">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="abc@example.com"
+                  value={user.email}
+                  onChange={handleChange}
+                  className="login-input"
+                  autoComplete="email"
+                />
+              </div>
+
+              <div className="login-field login-password-field">
+                <label htmlFor="password">Password</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  value={user.password}
+                  onChange={handleChange}
+                  className="login-input"
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="login-toggle"
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+            </section>
 
             <button
               type="submit"
               disabled={isLoading}
               className={`login-submit ${isLoading ? "is-loading" : ""}`}
             >
-              {isLoading ? "Signing In..." : "Sign In"}
+              {isLoading ? "Signing In..." : "Access My Account"}
             </button>
           </form>
 
