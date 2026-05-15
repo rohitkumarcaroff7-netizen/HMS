@@ -47,28 +47,53 @@ const GetSupport = () => {
 
   return (
     <div className="user-page">
-      <div className="userdetails">
+      <div className="userdetails support-shell">
         <div className="user-header">
           <div>
             <h1 className="dhead">Support</h1>
-            <p className="user-sub">Contact form submissions.</p>
+            <p className="user-sub">Review contact form submissions in one place.</p>
           </div>
           <div className="user-count">{messages.length} messages</div>
         </div>
 
-        <div className="user-list">
-          {messages.map((item) => (
-            <div key={item._id} className="detailcard user-card">
-              <div className="user-card-body">
-                <h2>{item.name}</h2>
-                <p>Email: {item.email}</p>
-                <p>Message: {item.message}</p>
+        <div className="support-list">
+          {messages.length === 0 ? (
+            <div className="support-empty">No support messages have been submitted yet.</div>
+          ) : (
+            messages.map((item, index) => (
+              <div key={item._id} className="support-card">
+                <div className="support-card-top">
+                  <div className="support-avatar" aria-hidden="true">
+                    {item.name?.trim()?.charAt(0)?.toUpperCase() || "S"}
+                  </div>
+
+                  <div className="support-identity">
+                    <div className="support-title-row">
+                      <h2>{item.name || "Unknown User"}</h2>
+                      <span className="support-seq">#{String(index + 1).padStart(2, "0")}</span>
+                    </div>
+                    <a href={`mailto:${item.email}`} className="support-email">
+                      {item.email || "No email provided"}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="support-message">
+                  <span>Message</span>
+                  <p>{item.message || "No message provided."}</p>
+                </div>
+
+                <div className="support-actions">
+                  <button
+                    className="delbtn support-delete"
+                    onClick={() => removeMessage(item._id)}
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
-              <button className="delbtn" onClick={() => removeMessage(item._id)}>
-                Remove
-              </button>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>

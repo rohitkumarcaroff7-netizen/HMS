@@ -22,7 +22,7 @@
   gap: 22px;
   height: fit-content;
   position: sticky;
-  top: 120px;
+  top: 0;
 }
 
 .admin-brand {

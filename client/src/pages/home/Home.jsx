@@ -12,7 +12,7 @@ export const Home = () => {
   return (
     <div className="home-page ">
 
-      <div className="intro  bg-gradient-to-r from-gray-100 to-blue-200 rounded-sm ">
+      <div className="intro home-intro-panel">
         <div className="desc border-7 border-white   ">
           <ImageSlider />
         </div><br />
@@ -43,8 +43,8 @@ export const Home = () => {
         </div>
       </div>
       <br /> 
- <div className=" flex justify-end items-center bg-gradient-to-r from-blue-100 to-blue-300"> 
-  <div className="flex justify-center gap-10 bg-slate-800 w-[40%] rounded-tl-xl  border-amber-500 border-r-10">
+ <div className="home-emblem-strip flex justify-end items-center"> 
+  <div className="home-emblem-card flex justify-center gap-10 w-[40%] rounded-tl-xl">
   <div><img src="./25-years-logo.png" alt="" width="70px" /></div>
   
  <div> <img src="./betislogan.png" alt="" width="60px" /></div>
@@ -59,7 +59,7 @@ export const Home = () => {
         </b>
       </div>
       <br />
-      <div className="container2 bg-slate-100">
+      <div className="container2 home-about-panel">
         <div className=" w-[60%]  flex justify-center items-center ">
           <p className="text-sm   leading-relaxed">
             The Institute of Management and Information Technology (IMIT)
@@ -101,7 +101,7 @@ export const Home = () => {
             transition from academia to industry. <br /> <br />
           </p>
         </div>
-        <div className="why  w-[25%] flex justify-center items-center flex-col rounded-xl  border-white">
+        <div className="why home-principal-panel  w-[25%] flex justify-center items-center flex-col rounded-xl  border-white">
           <div className="principal h-[50%]">
             <img
               src="./principalSir.jpg"
@@ -126,13 +126,13 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <h1 className="text-center font-bold">Meet our Hostel Management Staff</h1>
-      <div className="container3 h-65 w-[100%] flex justify-center items-center gap-80 rounded-xl border-4 border-white">
+      <h1 className="text-center font-bold home-staff-heading">Meet our Hostel Management Staff</h1>
+      <div className="container3 h-65 w-[100%] flex justify-center items-center gap-80  ">
         <div className="satyasir bg-slate-100 h-37 w-[37%]  gap-7 flex  items-center  ">
           <img
             src="./satyasir.jpg"
             alt="superitendent"
-            className="h-40 w-40  border-4 border-gray-400 rounded-full"
+            className="h-40 w-40  border-4 border-gray-400 rounded-xl"
           />
           <div className="sinfo">
             <h4 className="text-black text-sm">Boys Hostel superitendent</h4>
@@ -144,7 +144,7 @@ export const Home = () => {
           <img
             src="./srutimam.jpg"
             alt="superitendent"
-            className="h-40 w-40 border-4 border-gray-400 rounded-full"
+            className="h-40 w-40 border-4 border-gray-400 rounded-xl"
           />
           <div className="sinfo">
             <h4 className="text-black text-sm">Girls Hostel Superitendent</h4>
@@ -153,7 +153,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <h1 className="text-center font-semibold">[ A Step Towards Discipline and Respect ]</h1>
+      <h1 className="text-center font-semibold home-rules-heading">[ A Step Towards Discipline and Respect ]</h1>
       <br />
       <div className="rules  h-40 text-sm">
         <p>
@@ -238,7 +238,7 @@ export const Home = () => {
           </p>
         </div>
         <button
-          className="Cbtn cursor-pointer font-semibold duration-200 bg-blue-800 text-white text-sm"
+          className="Cbtn home-contact-btn cursor-pointer font-semibold duration-200 text-white text-sm"
           onClick={() => navigate("/contact")} >
           Contact Us
         </button>

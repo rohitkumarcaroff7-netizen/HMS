@@ -26,6 +26,12 @@ const PaymentDetails = () => {
     getPayments();
   }, [getPayments]);
 
+  const paidCount = payments.filter((item) => item.paymentStatus === "Paid").length;
+  const unpaidCount = payments.filter((item) => item.paymentStatus === "Unpaid").length;
+  const bookedCount = payments.filter(
+    (item) => item.room_no !== null && item.room_no !== undefined
+  ).length;
+
   const filteredPayments = payments.filter((item) => {
     if (selectedCategory === "Paid") {
       return item.paymentStatus === "Paid";
@@ -48,9 +54,28 @@ const PaymentDetails = () => {
         <div className="payment-header">
           <div>
             <h1>Payment Details</h1>
-            <p>Booked rooms and student payment records.</p>
+            <p>Track room assignments, payment status, and student records.</p>
           </div>
           <div className="payment-count">{filteredPayments.length} records</div>
+        </div>
+
+        <div className="payment-overview">
+          <div className="payment-overview-card">
+            <span>Total Records</span>
+            <strong>{payments.length}</strong>
+          </div>
+          <div className="payment-overview-card paid">
+            <span>Paid Users</span>
+            <strong>{paidCount}</strong>
+          </div>
+          <div className="payment-overview-card unpaid">
+            <span>Unpaid Users</span>
+            <strong>{unpaidCount}</strong>
+          </div>
+          <div className="payment-overview-card booked">
+            <span>Booked Rooms</span>
+            <strong>{bookedCount}</strong>
+          </div>
         </div>
 
         <div className="payment-filters">
@@ -96,9 +121,10 @@ const PaymentDetails = () => {
               return (
                 <div key={item._id} className="payment-card">
                   <div className="payment-card-header">
-                    <div>
+                    <div className="payment-card-title-group">
+                      <span className="payment-card-kicker">Student Payment</span>
                       <h2 className="payment-room-title">
-                        {isPaid ? (
+                        {item.room_no !== null && item.room_no !== undefined ? (
                           <>
                             <span className="payment-room-label">Room</span>
                             <span className="payment-room-number">{item.room_no}</span>
@@ -107,23 +133,26 @@ const PaymentDetails = () => {
                           "Room not assigned"
                         )}
                       </h2>
-                      <p>{isPaid ? `Price: ${item.price} INR` : "Price: Not paid yet"}</p>
+                      <p>{isPaid ? `Price: ${item.price} INR` : "Payment is still pending"}</p>
                     </div>
                     <span className={`payment-status ${isPaid ? "paid" : "unpaid"}`}>
-                      {item.paymentStatus}
+                      {item.paymentStatus || "Unknown"}
                     </span>
                   </div>
+
+                  <div className="payment-student-band">
+                    <div className="payment-avatar" aria-hidden="true">
+                      {student.username?.trim()?.charAt(0)?.toUpperCase() || "S"}
+                    </div>
+                    <div className="payment-student-copy">
+                      <h3>{student.username || "N/A"}</h3>
+                      <p>{student.email || "No email available"}</p>
+                    </div>
+                  </div>
+
                   <div className="payment-details">
                     <div>
-                      <span>Student</span>
-                      <strong>{student.username || "N/A"}</strong>
-                    </div>
-                    <div>
-                      <span>Email</span>
-                      <strong>{student.email || "N/A"}</strong>
-                    </div>
-                    <div>
-                      <span>Regd No</span>
+                      <span>Registration No</span>
                       <strong>{student.regd_no || "N/A"}</strong>
                     </div>
                     <div>
@@ -137,6 +166,18 @@ const PaymentDetails = () => {
                     <div>
                       <span>Phone</span>
                       <strong>{student.phone || "N/A"}</strong>
+                    </div>
+                    <div>
+                      <span>Room Status</span>
+                      <strong>
+                        {item.room_no !== null && item.room_no !== undefined
+                          ? `Assigned: ${item.room_no}`
+                          : "Not assigned"}
+                      </strong>
+                    </div>
+                    <div>
+                      <span>Amount</span>
+                      <strong>{isPaid ? `${item.price} INR` : "Pending"}</strong>
                     </div>
                   </div>
                 </div>

@@ -114,26 +114,60 @@ const GetUser = () => {
         </div>
 
         <div className="user-list">
-          {filteredUsers.map((item, index) => (
-            <div key={index} className="detailcard user-card">
-              <div className="user-card-body">
-                <img src={item.photoUrl} alt={item.username} className="user-avatar" />
-                <h2>Name : {item.username}</h2>
-                <p>Course : {item.course}</p>
-                <p>Year of study : {item.st_yr}</p>
-                <p>Phone Number : {item.phone}</p>
-                <p>Address : {item.address}</p>
-                <p>Email : {item.email}</p>
-                <h3>Registration No : {item.regd_no}</h3>
-              </div>
-              <button
-                className="delbtn user-delete"
-                onClick={() => removeUser(item._id)}
-              >
-                Remove
-              </button>
+          {filteredUsers.length === 0 ? (
+            <div className="user-empty">
+              No users match the selected filters or search term.
             </div>
-          ))}
+          ) : (
+            filteredUsers.map((item) => (
+              <div key={item._id} className="detailcard user-card">
+                <div className="user-card-top">
+                  <div className="user-avatar-wrap">
+                    <img
+                      src={item.photoUrl}
+                      alt={item.username}
+                      className="user-avatar"
+                    />
+                  </div>
+
+                  <div className="user-identity">
+                    <span className="user-tag">{item.course || "Student"}</span>
+                    <h2>{item.username}</h2>
+                    <p>{item.email}</p>
+                  </div>
+                </div>
+
+                <div className="user-quick-meta">
+                  <div className="user-meta-pill">
+                    <span>Year</span>
+                    <strong>{item.st_yr || "N/A"}</strong>
+                  </div>
+                  <div className="user-meta-pill">
+                    <span>Regd. No</span>
+                    <strong>{item.regd_no || "N/A"}</strong>
+                  </div>
+                </div>
+
+                <div className="user-card-body">
+                  <div className="user-detail-item">
+                    <span>Phone Number</span>
+                    <strong>{item.phone || "N/A"}</strong>
+                  </div>
+                  <div className="user-detail-item user-detail-wide">
+                    <span>Address</span>
+                    <strong>{item.address || "N/A"}</strong>
+                  </div>
+                </div>
+
+                <button
+                  className="delbtn user-delete"
+                  onClick={() => removeUser(item._id)}
+                >
+                  Remove User
+                </button>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

@@ -2,16 +2,24 @@
   width: 100%;
   margin: 0 auto;
   padding: 16px 20px 64px;
+  background:
+    radial-gradient(circle at top left, rgba(219, 234, 254, 0.7), transparent 26%),
+    linear-gradient(180deg, #f8fbff 0%, #eef5ff 54%, #f8fafc 100%);
+  color: #0f172a;
 }
 
 .home-page .intro {
- 
   display: flex;
   align-items: center;
   gap: 20px;
-  
-  border-radius: 8px;
+  border-radius: 24px;
   padding: 18px;
+}
+
+.home-page .home-intro-panel {
+  background: linear-gradient(135deg, #f8fbff 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.08);
 }
 
 .home-page .desc {
@@ -28,12 +36,23 @@
   width: 48%;
 }
 
+.home-page .img h3 {
+  color: #0f172a;
+}
+
+.home-page .img h4,
+.home-page .img p {
+  color: #334155;
+}
+
 .home-page .choose {
   display: flex;
   justify-content: center;
   margin: 48px auto 24px;
-  background-color:#D5E6FB;
-  
+  background: linear-gradient(90deg, #dbeafe 0%, #e0f2fe 100%);
+  border-radius: 18px;
+  color: #0f172a;
+  box-shadow: inset 0 0 0 1px rgba(191, 219, 254, 0.9);
 }
 
 .home-page .container2 {
@@ -42,17 +61,41 @@
   gap: 60px;
   margin: 0 auto 72px;
   padding: 25px;
-   background-color: #f3f3f3;
+}
+
+.home-page .home-emblem-strip {
+  margin-top: 10px;
+  padding: 10px 0;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #dbeafe 0%, #bfdbfe 100%);
+}
+
+.home-page .home-emblem-card {
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #0d2136 0%, #1e3a5f 100%);
+  border-right: 8px solid #3b82f6;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+}
+
+.home-page .home-about-panel {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid #dbeafe;
+  border-radius: 24px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
 }
 
 .home-page .why {
   background-color: #0d2136;
   padding: 24px;
+  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.16);
+}
+
+.home-page .home-principal-panel {
+  background: linear-gradient(180deg, #0d2136 0%, #1e3a5f 100%);
 }
 
 .home-page .container3 {
   margin: 40px auto 50px;
-  border-top: 1px solid #ddd;
   max-width: 1200px;
   padding-top: 16px;
 }
@@ -76,10 +119,8 @@
   
   box-shadow: 5px 5px 10px rgba(128, 128, 128, 0.105);
   color: rgb(255, 255, 255);
-  border-radius: 3px;
   letter-spacing: 0.5px;
   background-color: rgba(0, 0, 0, 0.788);
-  
 }
 
 .home-page .expbtn:hover {
@@ -87,28 +128,47 @@
   box-shadow: 1px 1px 3px rgb(128, 128, 128);
   background-color: rgb(227, 177, 16);
 }
+
+.home-page .home-staff-heading,
+.home-page .home-rules-heading {
+  color: #0f172a;
+}
 .satyasir{
-  border-radius: 10px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%) !important;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
 }
 .srutimam{
-  border-radius: 10px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%) !important;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
 }
 
 .home-page .rules {
   margin: 0 auto;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #cbd5e1;
   display: flex;
   padding: 12px;
   max-width: 1200px;
   height: auto;
+  color: #334155;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 16px;
 }
 
 .home-page .ruleSection {
   max-width: 1200px;
   margin: 16px auto 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(239, 246, 255, 0.72));
+  border: 1px solid #dbeafe;
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
 }
 .home-page .ruleSection h2 {
-  color:#2203ac;
+  color:#1d4ed8;
   font-weight: bold;
 }
 
@@ -122,6 +182,11 @@
 
 .home-page .rulebox {
   margin-top: 10px;
+}
+
+.home-page .join h2,
+.home-page .join p {
+  color: #0f172a;
 }
 
 @media (max-width: 1024px) {
@@ -191,9 +256,13 @@
 }
 .Cbtn{
   padding: 7px;
- padding-left: 14px;
- padding-right: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
   margin-top: 20px;
+}
+
+.home-page .home-contact-btn {
+  background-color: rgb(30, 64, 175);
 }
 .sinfo{
   padding: 10px;

@@ -44,31 +44,52 @@ const GetContact = () => {
   }, [getContact]);
   return (
     <div className="user-page">
-      <div className="userdetails">
+      <div className="userdetails complaint-shell">
         <div className="user-header">
           <div>
             <h1 className="dhead">Complaints</h1>
-            <p className="user-sub">Review and resolve student issues.</p>
+            <p className="user-sub">Review and resolve student issues in a single queue.</p>
           </div>
           <div className="user-count">{user.length} complaints</div>
         </div>
 
-        <div className="user-list">
-          {user.map((item, index) => (
-            <div key={index} className="detailcard user-card">
-              <div className="user-card-body">
-                <h2>{item.name}</h2>
-                <p>Phone Number: {item.phone_no}</p>
-                <p>Message: {item.message}</p>
-              </div>
-              <button
-                className="delbtn"
-                onClick={() => removeUser(item._id)}
-              >
-                Remove
-              </button>
+        <div className="complaint-list">
+          {user.length === 0 ? (
+            <div className="complaint-empty">
+              No complaints have been submitted yet.
             </div>
-          ))}
+          ) : (
+            user.map((item, index) => (
+              <div key={item._id || index} className="complaint-row">
+                <div className="complaint-index">
+                  <span>#{String(index + 1).padStart(2, "0")}</span>
+                </div>
+
+                <div className="complaint-main">
+                  <div className="complaint-top">
+                    <div className="complaint-user">
+                      <h2>{item.name}</h2>
+                      <p>{item.phone_no || "Phone not provided"}</p>
+                    </div>
+                  </div>
+
+                  <div className="complaint-message">
+                    <span>Complaint Message</span>
+                    <p>{item.message || "No message provided."}</p>
+                  </div>
+                </div>
+
+                <div className="complaint-actions">
+                  <button
+                    className="delbtn complaint-delete"
+                    onClick={() => removeUser(item._id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
