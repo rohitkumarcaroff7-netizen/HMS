@@ -24,7 +24,7 @@
 .food-notice-panel,
 .food-menu-panel {
   border: 1px solid rgba(157, 120, 83, 0.14);
-  border-radius: 28px;
+  border-radius: 12px;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 20px 45px rgba(93, 67, 44, 0.08);
 }
@@ -44,7 +44,7 @@
   align-items: center;
   width: fit-content;
   padding: 7px 12px;
-  border-radius: 999px;
+  border-radius: 8px;
   background: rgba(187, 115, 54, 0.12);
   color: #a55225;
   font-size: 11px;
@@ -56,7 +56,7 @@
 .food-notice-copy h1 {
   margin: 12px 0 8px;
   color: #1f2937;
-  font-size: clamp(1.5rem, 2.5vw, 2.35rem);
+  font-size: clamp(16px, 1.8vw, 22px);
   line-height: 1.02;
   letter-spacing: -0.04em;
 }
@@ -115,7 +115,7 @@
 .food-panel-header h2 {
   margin: 10px 0 6px;
   color: #18212c;
-  font-size: 1.55rem;
+  font-size: clamp(16px, 1.8vw, 22px);
   line-height: 1.1;
 }
 
@@ -141,7 +141,7 @@
   align-items: start;
   padding: 14px;
   border: 1px solid rgba(180, 191, 204, 0.4);
-  border-radius: 18px;
+  border-radius: 10px;
   background: linear-gradient(180deg, #fffaf4 0%, #ffffff 100%);
 }
 
@@ -151,7 +151,7 @@
   justify-content: center;
   width: 42px;
   height: 42px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: linear-gradient(180deg, #ffddb7 0%, #ffc88e 100%);
   color: #8a471d;
   font-size: 0.84rem;
@@ -166,7 +166,7 @@
 .food-empty-state {
   padding: 22px 18px;
   border: 1px dashed rgba(165, 82, 37, 0.35);
-  border-radius: 18px;
+  border-radius: 10px;
   background: #fffaf4;
 }
 
@@ -195,7 +195,7 @@
   .food-notice-highlight,
   .food-notice-panel,
   .food-menu-panel {
-    border-radius: 22px;
+    border-radius: 10px;
   }
 
   .food-notice-copy,

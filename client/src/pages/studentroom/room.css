@@ -1,109 +1,270 @@
 .room-page {
   min-height: calc(100vh - 120px);
-  padding: 30px 16px 48px;
-  background: radial-gradient(1100px 520px at 5% 0%, #f1f6ff 0%, #eef2ff 35%, #f9fafb 100%);
+  padding: 28px 16px 48px;
+  background:
+    radial-gradient(circle at top left, rgba(28, 57, 142, 0.14), transparent 28%),
+    radial-gradient(circle at right top, rgba(227, 177, 16, 0.15), transparent 22%),
+    linear-gradient(180deg, #f8fbff 0%, #edf4ff 46%, #f9fafb 100%);
 }
 
 .room-shell {
-  max-width: 1100px;
+  max-width: 1080px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
+}
+
+.room-hero {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 .room-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 12px;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.room-header-copy {
+  max-width: 680px;
+}
+
+.room-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(28, 57, 142, 0.1);
+  color: #1c398e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .room-header h1 {
-  font-size: 22px;
-  font-weight: 600;
+  margin-top: 12px;
+  font-size: clamp(1.2rem, 1.6vw, 1.65rem);
+  line-height: 1.1;
+  font-weight: 700;
+  color: #0f172a;
 }
 
 .room-header p {
-  font-size: 12px;
-  color: #64748b;
+  margin-top: 10px;
+  max-width: 60ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
 }
 
 .room-count {
-  background: #fbfbfb;
-  border: 1px solid #e2e8f0;
-  padding: 6px 12px;
-  
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0d2136 0%, #1c398e 100%);
+  color: #f8fafc;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
   font-size: 12px;
+  font-weight: 700;
+}
+
+.room-highlights {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.room-highlight-card {
+  padding: 15px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.room-highlight-card span {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1c398e;
+}
+
+.room-highlight-card strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 20px;
+  color: #111827;
+}
+
+.room-highlight-card p {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #6b7280;
 }
 
 .room-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
 }
 
 .room-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 7px;
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
-  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(160deg, rgba(37, 99, 235, 0.07), transparent 44%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 0;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  padding: 17px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 140px;
+  gap: 14px;
+  min-height: 210px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.room-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 44px rgba(15, 23, 42, 0.12);
+  border-color: rgba(28, 57, 142, 0.32);
 }
 
 .room-card-body h2 {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 700;
   color: #0f172a;
 }
 
-.room-card-body p {
-  font-size: 12px;
-  color: #475569;
+.room-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.room-meta > div {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(239, 246, 255, 0.86);
+}
+
+.room-meta-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1c398e;
+}
+
+.room-meta strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 16px;
+  color: #0f172a;
 }
 
 .purchasebtn {
   border: none;
-  border-radius: 4px;
-  padding: 8px 12px;
-  background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%);
+  margin-top: auto;
+  width: 100%;
+  border-radius: 0;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, #155dfc 0%, #1c398e 100%);
   color: #ffffff;
   cursor: pointer;
   font-size: 12px;
-  align-self: flex-start;
+  font-weight: 700;
+  box-shadow: 0 12px 22px rgba(28, 57, 142, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .purchasebtn:hover {
-  background: linear-gradient(90deg, #15803d 0%, #16a34a 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 16px 26px rgba(28, 57, 142, 0.28);
 }
 
 .purchasebtn.is-disabled {
-  background: #cbd5f5;
+  background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
   color: #475569;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .room-alert {
-  margin-top: 10px;
+  margin-top: 14px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px;
-  border-radius: 10px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
-  font-size: 12px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: rgba(227, 177, 16, 0.12);
+  border: 1px solid rgba(227, 177, 16, 0.28);
+  color: #8a5a00;
+  font-size: 11px;
   font-weight: 600;
 }
 
+.room-empty-state {
+  grid-column: 1 / -1;
+  padding: 34px 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px dashed rgba(148, 163, 184, 0.5);
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.room-empty-state h2 {
+  font-size: 21px;
+  color: #0f172a;
+}
+
+.room-empty-state p {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+@media (max-width: 900px) {
+  .room-highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 640px) {
+  .room-page {
+    padding-inline: 12px;
+  }
+
+  .room-hero {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
   .room-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .room-card {
+    min-height: auto;
+  }
+
+  .room-meta {
+    grid-template-columns: 1fr;
   }
 }
