@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="copyright h-7 bg-amber-400 text-sm flex justify-center items-center">
-<h1>(c) 2025 Institute of Management and Information Technology - All Rights Reserved.</h1>
+<h1>(c) 2026 Institute of Management and Information Technology - All Rights Reserved.</h1>
 
       </div>
     </div>

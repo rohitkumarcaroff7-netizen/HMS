@@ -107,18 +107,29 @@ const EventsAdmin = () => {
     <div className="events-admin-page">
       <div className="events-admin-shell">
         <div className="events-admin-header">
-          <div>
-            <h1>Events</h1>
-            <p>Create and manage event notices for the hostel.</p>
+          <div className="events-admin-copy">
+            <span className="events-eyebrow">Notice Planner</span>
+            <h1>Event Management</h1>
+            <p>Create and manage hostel event notices in one place.</p>
           </div>
-          <div className="events-admin-count">{events.length} events</div>
+          <div className="events-admin-count">
+            <span>Total Events</span>
+            <strong>{events.length}</strong>
+          </div>
         </div>
 
         {error && <div className="events-error">{error}</div>}
 
         <div className="events-admin-grid">
           <form className="events-admin-form" onSubmit={handleSubmit}>
-            <div>
+            <div className="events-form-head">
+              <div>
+                <span className="events-section-label">Create Notice</span>
+                <h2>Add New Event</h2>
+              </div>
+            </div>
+
+            <div className="events-field">
               <label htmlFor="title">Event Title</label>
               <input
                 id="title"
@@ -129,8 +140,9 @@ const EventsAdmin = () => {
                 className="events-input"
               />
             </div>
+
             <div className="events-row">
-              <div>
+              <div className="events-field">
                 <label htmlFor="date">Date</label>
                 <input
                   id="date"
@@ -141,7 +153,7 @@ const EventsAdmin = () => {
                   className="events-input"
                 />
               </div>
-              <div>
+              <div className="events-field">
                 <label htmlFor="location">Location</label>
                 <input
                   id="location"
@@ -153,7 +165,8 @@ const EventsAdmin = () => {
                 />
               </div>
             </div>
-            <div>
+
+            <div className="events-field">
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
@@ -162,39 +175,50 @@ const EventsAdmin = () => {
                 onChange={handleChange}
                 placeholder="Write a short description for the notice."
                 className="events-textarea"
-                rows={4}
+                rows={5}
               />
             </div>
+
             <button type="submit" className="events-submit" disabled={submitting}>
               {submitting ? "Adding..." : "Add Event"}
             </button>
           </form>
 
-          <div className="events-admin-list">
-            {loading ? (
-              <div className="events-empty">Loading events...</div>
-            ) : events.length === 0 ? (
-              <div className="events-empty">No events added yet.</div>
-            ) : (
-              events.map((item) => (
-                <div key={item._id} className="events-card">
-                  <div>
-                    <h2>{item.title}</h2>
-                    <p className="events-meta">
-                      {item.date} | {item.location}
-                    </p>
-                    <p className="events-desc">{item.description}</p>
+          <div className="events-admin-list-wrap">
+            <div className="events-list-head">
+              <div>
+                <span className="events-section-label">Saved Notices</span>
+                <h2>Event Preview</h2>
+              </div>
+            </div>
+
+            <div className="events-admin-list">
+              {loading ? (
+                <div className="events-empty">Loading events...</div>
+              ) : events.length === 0 ? (
+                <div className="events-empty">No events added yet.</div>
+              ) : (
+                events.map((item) => (
+                  <div key={item._id} className="events-card">
+                    <div className="events-card-copy">
+                      <span className="events-card-kicker">Event Notice</span>
+                      <h3>{item.title}</h3>
+                      <p className="events-meta">
+                        {item.date} | {item.location}
+                      </p>
+                      <p className="events-desc">{item.description}</p>
+                    </div>
+                    <button
+                      type="button"
+                      className="events-delete"
+                      onClick={() => handleDelete(item._id)}
+                    >
+                      Remove
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    className="events-delete"
-                    onClick={() => handleDelete(item._id)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))
-            )}
+                ))
+              )}
+            </div>
           </div>
         </div>
       </div>

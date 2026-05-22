@@ -77,13 +77,28 @@ const FoodNoticeAdmin = () => {
     }
   };
 
+  const noticeLines = noticeText
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
   return (
     <div className="fna-page">
       <div className="fna-shell">
         <div className="fna-header">
-          <div>
-            <h1>Food Notice</h1>
-            <p>Manage the food notice content shown on the notice page.</p>
+          <div className="fna-header-copy">
+            <span className="fna-eyebrow">Notice Publisher</span>
+            <h1>Food Notice Management</h1>
+            <p>
+              Update the food notice heading and publish day-to-day meal related
+              updates for students in one place.
+            </p>
+          </div>
+
+          <div className="fna-status-card">
+            <span className="fna-status-label">Live Summary</span>
+            <strong>{noticeLines.length}</strong>
+            <p>notice items ready to publish</p>
           </div>
         </div>
 
@@ -93,34 +108,66 @@ const FoodNoticeAdmin = () => {
           <div className="fna-loading">Loading food notice...</div>
         ) : (
           <form className="fna-form" onSubmit={handleSave}>
-            <div className="fna-field">
-              <label htmlFor="food-notice-title">Heading</label>
-              <input
-                id="food-notice-title"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="fna-input"
-                placeholder="Food Notice"
-              />
+            <div className="fna-main-card">
+              <div className="fna-field-card">
+                <div className="fna-field-head">
+                  <label htmlFor="food-notice-title">Heading</label>
+                  <span className="fna-field-tag">Display title</span>
+                </div>
+                <input
+                  id="food-notice-title"
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="fna-input"
+                  placeholder="Food Notice"
+                />
+              </div>
+
+              <div className="fna-field-card">
+                <div className="fna-field-head">
+                  <label htmlFor="food-notice-list">Notice Items</label>
+                  <span className="fna-field-tag">One per line</span>
+                </div>
+                <textarea
+                  id="food-notice-list"
+                  value={noticeText}
+                  onChange={(e) => setNoticeText(e.target.value)}
+                  className="fna-textarea"
+                  rows={8}
+                  placeholder={
+                    "Enter one notice per line.\nExample: Sunday meal changed to Dosa and Chutney"
+                  }
+                />
+                <p className="fna-help">
+                  Each line will appear as a separate notice item on the notice
+                  page.
+                </p>
+              </div>
             </div>
 
-            <div className="fna-field">
-              <label htmlFor="food-notice-list">Notice Items</label>
-              <textarea
-                id="food-notice-list"
-                value={noticeText}
-                onChange={(e) => setNoticeText(e.target.value)}
-                className="fna-textarea"
-                rows={7}
-                placeholder={"Enter one notice per line.\nExample: Sunday meal changed to Dosa and Chutney"}
-              />
-              <p className="fna-help">Each line will appear as a separate notice item.</p>
-            </div>
+            <aside className="fna-side-card">
+              <div className="fna-side-block">
+                <span className="fna-side-label">Quick Tips</span>
+                <ul className="fna-tip-list">
+                  <li>Keep each update short so students can scan it quickly.</li>
+                  <li>Use one line per notice to keep the frontend list clean.</li>
+                  <li>Update the title only when the notice type changes.</li>
+                </ul>
+              </div>
 
-            <button type="submit" className="fna-submit" disabled={saving}>
-              {saving ? "Saving..." : "Save Food Notice"}
-            </button>
+              <div className="fna-side-block">
+                <span className="fna-side-label">Preview Count</span>
+                <div className="fna-count-pill">
+                  <strong>{noticeLines.length}</strong>
+                  <span>items prepared</span>
+                </div>
+              </div>
+
+              <button type="submit" className="fna-submit" disabled={saving}>
+                {saving ? "Saving..." : "Save Food Notice"}
+              </button>
+            </aside>
           </form>
         )}
       </div>

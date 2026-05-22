@@ -1,18 +1,18 @@
 .user-page {
-  padding: 10px;
+  padding: 8px;
 }
 
 .userdetails {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .user-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 12px;
+  gap: 10px;
 }
 
 .dhead {
@@ -81,40 +81,41 @@
 }
 
 .complaint-shell .dhead {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: #0f172a;
 }
 
 .complaint-shell .user-sub {
-  font-size: 13px;
-  margin-top: 4px;
+  font-size: 12px;
+  margin-top: 3px;
 }
 
 .complaint-shell .user-count {
   background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
   border-color: #bfdbfe;
   border-radius: 999px;
-  padding: 8px 14px;
+  padding: 6px 12px;
   font-weight: 700;
   color: #1d4ed8;
+  font-size: 12px;
 }
 
 .complaint-list {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   max-height: 90vh;
   overflow-y: auto;
-  padding-right: 6px;
+  padding-right: 4px;
 }
 
 .complaint-row {
   display: grid;
-  grid-template-columns: 58px minmax(0, 1fr) auto;
-  gap: 12px;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  gap: 10px;
   align-items: stretch;
-  padding: 13px 14px;
-  border-radius: 16px;
+  padding: 11px 12px;
+  border-radius: 12px;
   border: 1px solid #d7e8ff;
   background:
     radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 28%),
@@ -139,19 +140,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
   color: #1d4ed8;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   box-shadow: inset 0 0 0 1px rgba(147, 197, 253, 0.9);
 }
 
 .complaint-main {
   display: grid;
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
 }
 
@@ -164,33 +165,33 @@
 
 .complaint-user {
   display: grid;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
 .complaint-user h2 {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   color: #0f172a;
   line-height: 1.2;
 }
 
 .complaint-user p {
-  font-size: 12px;
+  font-size: 11px;
   color: #64748b;
 }
 
 .complaint-message {
   display: grid;
-  gap: 6px;
-  padding: 10px 12px;
-  border-radius: 12px;
+  gap: 5px;
+  padding: 8px 10px;
+  border-radius: 10px;
   background: rgba(248, 250, 252, 0.92);
   border: 1px solid #e2e8f0;
 }
 
 .complaint-message span {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -198,8 +199,8 @@
 }
 
 .complaint-message p {
-  font-size: 12px;
-  line-height: 1.55;
+  font-size: 11px;
+  line-height: 1.5;
   color: #0f172a;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -211,10 +212,10 @@
 }
 
 .complaint-delete {
-  padding: 8px 12px;
-  border-radius: 12px;
+  padding: 7px 10px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
@@ -226,12 +227,12 @@
 }
 
 .complaint-empty {
-  padding: 24px;
-  border-radius: 18px;
+  padding: 18px;
+  border-radius: 14px;
   border: 1px dashed #bfdbfe;
   background: linear-gradient(180deg, #f8fbff 0%, #f8fafc 100%);
   color: #64748b;
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -256,8 +257,8 @@
   }
 
   .complaint-row {
-    padding: 12px;
-    border-radius: 14px;
+    padding: 10px;
+    border-radius: 12px;
   }
 
   .complaint-top {

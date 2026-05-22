@@ -11,12 +11,14 @@ const emptyForm = {
   course: "MCA",
   st_yr: "1st",
 };
+const COURSE_OPTIONS = ["All", "MCA", "MBA", "M.TECH"];
 
 const EligibleStudentAdmin = () => {
   const { token } = useAuth();
   const [title, setTitle] = useState("Eligible Student List");
   const [students, setStudents] = useState([]);
   const [form, setForm] = useState(emptyForm);
+  const [courseFilter, setCourseFilter] = useState("All");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -132,6 +134,17 @@ const EligibleStudentAdmin = () => {
     );
   };
 
+  const filteredStudents =
+    courseFilter === "All"
+      ? students
+      : students.filter((student) => student.course === courseFilter);
+  const courseCounts = COURSE_OPTIONS.filter((course) => course !== "All").map(
+    (course) => ({
+      course,
+      count: students.filter((student) => student.course === course).length,
+    })
+  );
+
   return (
     <div className="esa-page">
       <div className="esa-shell">
@@ -231,30 +244,66 @@ const EligibleStudentAdmin = () => {
             </div>
 
             <div className="esa-list-panel">
-              {students.length === 0 ? (
+              <div className="esa-list-top">
+                <div className="esa-course-status">
+                  {courseCounts.map(({ course, count }) => (
+                    <div key={course} className="esa-course-pill">
+                      <span>{course}</span>
+                      <strong>{count}</strong>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="esa-filter">
+                  <label htmlFor="esa-course-filter">Filter by Course</label>
+                  <select
+                    id="esa-course-filter"
+                    value={courseFilter}
+                    onChange={(e) => setCourseFilter(e.target.value)}
+                  >
+                    {COURSE_OPTIONS.map((course) => (
+                      <option key={course} value={course}>
+                        {course}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {filteredStudents.length === 0 ? (
                 <div className="esa-empty">No students added yet.</div>
               ) : (
-                students.map((student, index) => (
-                  <div
-                    key={student._id || `${student.regd_no}-${index}`}
-                    className="esa-card"
-                  >
-                    <div>
-                      <h2>{student.name}</h2>
-                      <p>Registration No: {student.regd_no}</p>
-                      <p>
-                        {student.course || "N/A"} | {student.st_yr || "N/A"}
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      className="esa-remove-btn"
-                      onClick={() => handleRemove(index)}
+                filteredStudents.map((student) => {
+                  const studentIndex = students.findIndex(
+                    (entry) =>
+                      (entry._id && student._id && entry._id === student._id) ||
+                      (!student._id &&
+                        entry.regd_no === student.regd_no &&
+                        entry.name === student.name)
+                  );
+
+                  return (
+                    <div
+                      key={student._id || `${student.regd_no}-${student.name}`}
+                      className="esa-card"
                     >
-                      Remove
-                    </button>
-                  </div>
-                ))
+                      <div>
+                        <h2>{student.name}</h2>
+                        <p>Registration No: {student.regd_no}</p>
+                        <p>
+                          {student.course || "N/A"} | {student.st_yr || "N/A"}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        className="esa-remove-btn"
+                        onClick={() => handleRemove(studentIndex)}
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  );
+                })
               )}
             </div>
           </div>

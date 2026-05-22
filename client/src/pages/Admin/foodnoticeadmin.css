@@ -1,77 +1,230 @@
 .fna-page {
+  --fna-bg: linear-gradient(180deg, #edf3ff 0%, #f8faff 100%);
+  --fna-panel: rgba(255, 255, 255, 0.92);
+  --fna-border: rgba(28, 57, 142, 0.14);
+  --fna-text: #0f172a;
+  --fna-muted: #5b6b7d;
+  --fna-accent: #1c398e;
+  --fna-accent-soft: rgba(227, 177, 16, 0.14);
   padding: 12px;
 }
 
 .fna-shell {
-  max-width: 640px;
+  max-width: 980px;
   margin: 0 auto;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 14px;
   padding: 18px;
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--fna-border);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(28, 57, 142, 0.12), transparent 26%),
+    radial-gradient(circle at bottom left, rgba(227, 177, 16, 0.16), transparent 32%),
+    var(--fna-bg);
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.07);
+}
+
+.fna-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.fna-header-copy {
+  max-width: 620px;
+}
+
+.fna-eyebrow,
+.fna-status-label,
+.fna-side-label,
+.fna-field-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--fna-accent);
 }
 
 .fna-header h1 {
-  font-size: 1.35rem;
-  color: #0f172a;
-  margin-bottom: 6px;
+  margin: 6px 0 8px;
+  color: var(--fna-text);
+  font-size: clamp(1.2rem, 1.5vw, 1.55rem);
+  line-height: 1.05;
 }
 
 .fna-header p {
-  color: #475569;
-  margin-bottom: 18px;
-  font-size: 0.92rem;
+  margin: 0;
+  color: var(--fna-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.fna-status-card {
+  min-width: 180px;
+  padding: 12px 14px;
+  border: 1px solid rgba(28, 57, 142, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 12px 26px rgba(28, 57, 142, 0.08);
+}
+
+.fna-status-card strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--fna-text);
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.fna-status-card p {
+  margin: 6px 0 0;
+  color: var(--fna-muted);
+  font-size: 12px;
 }
 
 .fna-form {
   display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.75fr);
   gap: 14px;
+  align-items: start;
 }
 
-.fna-field {
+.fna-main-card,
+.fna-side-card,
+.fna-field-card,
+.fna-loading,
+.fna-error {
+  border: 1px solid var(--fna-border);
+  background: var(--fna-panel);
+}
+
+.fna-main-card {
   display: grid;
-  gap: 6px;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 20px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
 }
 
-.fna-field label {
-  font-weight: 600;
+.fna-field-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+}
+
+.fna-field-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.fna-field-head label {
+  font-weight: 700;
   color: #1e293b;
-  font-size: 0.92rem;
+  font-size: 13px;
 }
 
 .fna-input,
 .fna-textarea {
   width: 100%;
   border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  padding: 10px 12px;
-  color: #0f172a;
-  background: #f8fafc;
-  font-size: 0.95rem;
+  border-radius: 12px;
+  padding: 11px 12px;
+  color: var(--fna-text);
+  background: #ffffff;
+  font-size: 13px;
   box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fna-input:focus,
+.fna-textarea:focus {
+  outline: none;
+  border-color: #1c398e;
+  box-shadow: 0 0 0 4px rgba(28, 57, 142, 0.1);
 }
 
 .fna-textarea {
   resize: vertical;
-  min-height: 160px;
+  min-height: 200px;
 }
 
 .fna-help {
-  font-size: 0.82rem;
-  color: #64748b;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--fna-muted);
+}
+
+.fna-side-card {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 20px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+}
+
+.fna-side-block {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+  border: 1px solid rgba(227, 177, 16, 0.28);
+}
+
+.fna-tip-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--fna-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.fna-count-pill {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  width: fit-content;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--fna-accent-soft);
+  color: var(--fna-accent);
+}
+
+.fna-count-pill strong {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.fna-count-pill span {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .fna-submit {
-  width: fit-content;
-  padding: 10px 16px;
+  width: 100%;
+  padding: 12px 16px;
   border: none;
-  border-radius: 10px;
-  background: #0f766e;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0d2136 0%, #1c398e 58%, #155dfc 100%);
   color: #ffffff;
-  font-weight: 600;
-  font-size: 0.92rem;
+  font-weight: 700;
+  font-size: 13px;
   cursor: pointer;
+  box-shadow: 0 14px 28px rgba(28, 57, 142, 0.22);
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fna-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 32px rgba(28, 57, 142, 0.28);
 }
 
 .fna-submit:disabled {
@@ -82,15 +235,23 @@
 .fna-error {
   margin-bottom: 14px;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 14px;
   background: #fef2f2;
   color: #b91c1c;
-  font-size: 0.9rem;
+  font-size: 12px;
 }
 
 .fna-loading {
+  padding: 18px;
+  border-radius: 18px;
   color: #334155;
-  font-size: 0.92rem;
+  font-size: 13px;
+}
+
+@media (max-width: 860px) {
+  .fna-form {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -100,6 +261,18 @@
 
   .fna-shell {
     padding: 14px;
-    border-radius: 12px;
+    border-radius: 18px;
+  }
+
+  .fna-main-card,
+  .fna-side-card,
+  .fna-field-card {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .fna-field-head {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

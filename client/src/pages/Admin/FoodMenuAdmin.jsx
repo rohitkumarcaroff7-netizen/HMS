@@ -14,6 +14,23 @@ const DAYS = [
   "Sunday",
 ];
 const MEALS = ["breakfast", "lunch", "dinner"];
+const MEAL_META = {
+  breakfast: {
+    label: "Breakfast",
+    hint: "Set the first meal students see at the start of the day.",
+    placeholder: "e.g. Idli & Sambar",
+  },
+  lunch: {
+    label: "Lunch",
+    hint: "Add the main midday meal served in the hostel.",
+    placeholder: "e.g. Rice, Dal & Veg Curry",
+  },
+  dinner: {
+    label: "Dinner",
+    hint: "Finish the day with the evening meal plan.",
+    placeholder: "e.g. Roti, Paneer Masala",
+  },
+};
 
 const emptyMenu = () =>
   Object.fromEntries(
@@ -93,17 +110,46 @@ const FoodMenuAdmin = () => {
     }
   };
 
+  const completedMeals = DAYS.reduce(
+    (count, day) =>
+      count + MEALS.filter((meal) => items[day]?.[meal]?.trim()).length,
+    0
+  );
+  const totalMeals = DAYS.length * MEALS.length;
+  const activeDayFilled = MEALS.filter(
+    (meal) => items[activeDay]?.[meal]?.trim()
+  ).length;
+
   return (
     <div className="fma-page">
       <div className="fma-shell">
         <div className="fma-header">
-          <div>
-            <h1>Food Menu</h1>
-            <p>Edit the weekly breakfast, lunch, and dinner schedule.</p>
+          <div className="fma-header-copy">
+            <span className="fma-eyebrow">Weekly Kitchen Planner</span>
+            <h1>Food Menu Management</h1>
+            <p>
+              Manage breakfast, lunch, and dinner for the full week with a
+              cleaner day-by-day editing flow.
+            </p>
           </div>
-          <button className="fma-save-btn" onClick={handleSave} disabled={saving || loading}>
-            {saving ? "Saving..." : "Save Menu"}
-          </button>
+
+          <div className="fma-header-actions">
+            <div className="fma-status-card">
+              <span className="fma-status-label">Menu Coverage</span>
+              <strong>
+                {completedMeals}/{totalMeals}
+              </strong>
+              <p>{activeDayFilled} meals set for {activeDay}</p>
+            </div>
+
+            <button
+              className="fma-save-btn"
+              onClick={handleSave}
+              disabled={saving || loading}
+            >
+              {saving ? "Saving..." : "Save Menu"}
+            </button>
+          </div>
         </div>
 
         {error && <div className="fma-error">{error}</div>}
@@ -112,59 +158,118 @@ const FoodMenuAdmin = () => {
           <div className="fma-loading">Loading menu...</div>
         ) : (
           <div className="fma-body">
-            <div className="fma-tabs">
-              {DAYS.map((day) => (
-                <button
-                  key={day}
-                  className={`fma-tab ${activeDay === day ? "fma-tab--active" : ""}`}
-                  onClick={() => setActiveDay(day)}
-                >
-                  {day.slice(0, 3)}
-                </button>
-              ))}
-            </div>
+            <div className="fma-topbar">
+              <div className="fma-tabs" role="tablist" aria-label="Select day">
+                {DAYS.map((day) => {
+                  const filledCount = MEALS.filter((meal) =>
+                    items[day]?.[meal]?.trim()
+                  ).length;
 
-            <div className="fma-form-card">
-              <h2 className="fma-day-title">{activeDay}</h2>
-              <div className="fma-meal-grid">
-                {MEALS.map((meal) => (
-                  <div key={meal} className="fma-meal-field">
-                    <label htmlFor={`${activeDay}-${meal}`}>
-                      {meal.charAt(0).toUpperCase() + meal.slice(1)}
-                    </label>
-                    <input
-                      id={`${activeDay}-${meal}`}
-                      type="text"
-                      value={items[activeDay]?.[meal] || ""}
-                      onChange={(e) => handleChange(activeDay, meal, e.target.value)}
-                      placeholder="e.g. Idli & Sambar"
-                      className="fma-input"
-                    />
-                  </div>
-                ))}
+                  return (
+                    <button
+                      key={day}
+                      className={`fma-tab ${
+                        activeDay === day ? "fma-tab--active" : ""
+                      }`}
+                      onClick={() => setActiveDay(day)}
+                      role="tab"
+                      aria-selected={activeDay === day}
+                    >
+                      <span className="fma-tab-day">{day}</span>
+                      <span className="fma-tab-meta">{filledCount}/3 meals</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            <div className="fma-preview">
-              <h3>All Days Preview</h3>
-              <div className="fma-preview-grid">
-                {DAYS.map((day) => (
-                  <div
-                    key={day}
-                    className={`fma-preview-card ${activeDay === day ? "fma-preview-card--active" : ""}`}
-                    onClick={() => setActiveDay(day)}
-                  >
-                    <span className="fma-preview-day">{day.slice(0, 3)}</span>
-                    <ul>
-                      {MEALS.map((meal) => (
-                        <li key={meal}>
-                          <span>{meal.charAt(0).toUpperCase() + meal.slice(1)}:</span>{" "}
-                          {items[day]?.[meal] || <em className="fma-empty-meal">not set</em>}
-                        </li>
-                      ))}
-                    </ul>
+            <div className="fma-layout">
+              <div className="fma-form-card">
+                <div className="fma-form-head">
+                  <div>
+                    <span className="fma-section-label">Editing Day</span>
+                    <h2 className="fma-day-title">{activeDay}</h2>
                   </div>
-                ))}
+
+                  <div className="fma-day-progress">
+                    <span>{activeDayFilled} of 3 meals ready</span>
+                  </div>
+                </div>
+
+                <div className="fma-meal-grid">
+                  {MEALS.map((meal) => (
+                    <div key={meal} className="fma-meal-field">
+                      <label htmlFor={`${activeDay}-${meal}`}>
+                        {MEAL_META[meal].label}
+                      </label>
+                      <p className="fma-meal-hint">{MEAL_META[meal].hint}</p>
+                      <input
+                        id={`${activeDay}-${meal}`}
+                        type="text"
+                        value={items[activeDay]?.[meal] || ""}
+                        onChange={(e) =>
+                          handleChange(activeDay, meal, e.target.value)
+                        }
+                        placeholder={MEAL_META[meal].placeholder}
+                        className="fma-input"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="fma-preview">
+                <div className="fma-preview-head">
+                  <div>
+                    <span className="fma-section-label">Weekly Snapshot</span>
+                    <h3>All Days Preview</h3>
+                  </div>
+                  <p>Click any day card to jump back into editing.</p>
+                </div>
+
+                <div className="fma-preview-grid">
+                  {DAYS.map((day) => (
+                    <div
+                      key={day}
+                      className={`fma-preview-card ${
+                        activeDay === day ? "fma-preview-card--active" : ""
+                      }`}
+                      onClick={() => setActiveDay(day)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          setActiveDay(day);
+                        }
+                      }}
+                    >
+                      <div className="fma-preview-top">
+                        <span className="fma-preview-day">{day}</span>
+                        <span className="fma-preview-count">
+                          {
+                            MEALS.filter((meal) =>
+                              items[day]?.[meal]?.trim()
+                            ).length
+                          }
+                          /3
+                        </span>
+                      </div>
+
+                      <ul>
+                        {MEALS.map((meal) => (
+                          <li key={meal}>
+                            <span>{MEAL_META[meal].label}</span>
+                            <strong>
+                              {items[day]?.[meal] || (
+                                <em className="fma-empty-meal">Not set</em>
+                              )}
+                            </strong>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
