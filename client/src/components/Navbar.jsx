@@ -68,7 +68,7 @@ export const Navbar = () => {
                 </h2>
               </div>
             </div>
-            <div className="navright ">
+            <div className="navright">
               <nav>
                 <ul className="navul ">
                   <li>

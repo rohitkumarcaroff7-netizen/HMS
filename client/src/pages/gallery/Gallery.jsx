@@ -174,6 +174,7 @@ export const Gallery = () => {
           <figure
             key={image.src}
             className={`gallery-card ${rotationClassNames[index % rotationClassNames.length]}`}
+            style={{ "--card-delay": `${index * 80}ms` }}
             onClick={() => handleOpen(index)}
             role="button"
             tabIndex={0}
