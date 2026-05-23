@@ -16,7 +16,12 @@ const userSchema = mongoose.Schema(
     resetOTPExpire: { type: Number, default: 0 },
     purchasedRoom: {type: mongoose.Schema.Types.ObjectId, ref:"Room", default:null},
     role: { type: String, enum: ["student", "admin"], default: "student" },
-    photoUrl : {type: String, default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+    photoUrl : {type: String, default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"},
+    profileImage: {
+      data: { type: Buffer, default: null },
+      contentType: { type: String, default: "" },
+      fileName: { type: String, default: "" },
+    }
   },
   { timestamps: true }
 );

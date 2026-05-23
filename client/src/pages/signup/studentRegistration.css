@@ -213,9 +213,23 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
+.signup-file-input {
+  padding: 0.75rem;
+}
+
 .signup-textarea {
   min-height: 96px;
   resize: vertical;
+}
+
+.signup-image-preview {
+  width: 88px;
+  height: 88px;
+  margin-top: 0.75rem;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
 }
 
 .signup-input:focus,
@@ -253,7 +267,9 @@
 }
 
 .signup-submit {
-  width: 100%;
+  width: fit-content;
+  min-width: 190px;
+  align-self: center;
   border: none;
   border-radius: 5px;
   padding: 13px 16px;

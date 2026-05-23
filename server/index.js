@@ -13,6 +13,7 @@ import eventRoute from "./routes/event-router.js";
 import foodNoticeRoute from "./routes/foodnotice-router.js";
 import feeStructureRoute from "./routes/feestructure-router.js";
 import eligibleStudentRoute from "./routes/eligibleStudent-router.js";
+import carouselRoute from "./routes/carousel-router.js";
 // import studentRouter from './routes/student-route.js';
 import cors from "cors";
 
@@ -53,6 +54,7 @@ app.use("/api/events", eventRoute);
 app.use("/api/foodnotice", foodNoticeRoute);
 app.use("/api/feestructure", feeStructureRoute);
 app.use("/api/eligible-students", eligibleStudentRoute);
+app.use("/api/carousel", carouselRoute);
 // app.use("/api/getStudents", studentRouter);
 
 // Start the server

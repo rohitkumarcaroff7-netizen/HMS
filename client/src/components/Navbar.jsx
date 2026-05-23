@@ -5,7 +5,8 @@ import { useAuth } from "../store/auth";
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user, role } = useAuth();
+  const isAdmin = role === "admin";
 
   return (
     <>
@@ -32,6 +33,21 @@ export const Navbar = () => {
             <div className="btns">
               {isLoggedIn ? (
                 <>
+                  {!isAdmin && user?.username ? (
+                    <span className="navbar-student-name">{user.username.trim().split(" ")[0]}</span>
+                  ) : null}
+                  <div className={`navbar-profile-wrap ${isAdmin ? "is-admin" : ""}`}>
+                    <img
+                      src={user?.photoUrl || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
+                      alt={user?.username ? `${user.username} profile` : "Profile"}
+                      className="navbar-profile-image"
+                    />
+                    {isAdmin ? (
+                      <span className="navbar-admin-badge" title="Admin user">
+                        Admin
+                      </span>
+                    ) : null}
+                  </div>
                   <button
                     className="btn"
                     id="lout"
@@ -121,9 +137,16 @@ export const Navbar = () => {
                         <NavLink to="/hostel_enroll" className="dropbtn">
                           Hostel Enroll
                         </NavLink>
-                        <NavLink to="/complain" className="dropbtn">
-                          Complain/Request
-                        </NavLink>
+                        {!isAdmin ? (
+                          <>
+                            <NavLink to="/complain" className="dropbtn">
+                              Complaint Form
+                            </NavLink>
+                            <NavLink to="/request-form" className="dropbtn">
+                              Request Form
+                            </NavLink>
+                          </>
+                        ) : null}
                        
                       </div>
                     </div>

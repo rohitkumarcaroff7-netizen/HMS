@@ -1,11 +1,11 @@
 import express from 'express'
 import { register, login, forgot_password, reset_password, verifyOTP, getUserData, getAllStudents, updateRole, deleteUser, getMCAStudents, getMBAStudents, getMTECHStudents, getEligibleStudents } from '../controllers/userControl.js'
 import {auth, authAdmin} from '../middlewares/user-middleware.js'
-// import upload from '../config/multer.js'
+import upload from '../middlewares/multer-middleware.js'
 
 const router = express.Router()
 
-router.post('/signup', register)
+router.post('/signup', upload.single("profileImage"), register)
 router.post('/signin', login)
 router.post('/forgot_password', forgot_password)
 router.post('/reset_password', reset_password)

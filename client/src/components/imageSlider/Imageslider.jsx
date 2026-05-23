@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const images = [
+const fallbackImages = [
   "./hostel_images/img1.jpg",
   "./hostel_images/img2.jpg",
   "./hostel_images/img3.jpg",
@@ -10,6 +10,26 @@ const images = [
 
 export default function ImageSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [images, setImages] = useState(fallbackImages);
+
+  useEffect(() => {
+    const fetchCarouselImages = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/carousel");
+        const data = await response.json().catch(() => []);
+
+        if (!response.ok || !Array.isArray(data) || data.length === 0) {
+          return;
+        }
+
+        setImages(data.map((item) => item.imageUrl).filter(Boolean));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCarouselImages();
+  }, []);
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -24,7 +44,13 @@ export default function ImageSlider() {
   useEffect(() => {
     const interval = setInterval(goToNext, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
+
+  useEffect(() => {
+    if (currentIndex >= images.length) {
+      setCurrentIndex(0);
+    }
+  }, [currentIndex, images.length]);
 
   return (
     <div className="relative h-100 w-full max-w-3xl mx-auto overflow-hidden">
@@ -33,7 +59,12 @@ export default function ImageSlider() {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((img, idx) => (
-          <img key={idx} src={img} className="w-full flex-shrink-0" />
+          <img
+            key={idx}
+            src={img}
+            className="h-100 w-full flex-shrink-0 object-cover"
+            alt={`Carousel slide ${idx + 1}`}
+          />
         ))}
       </div>
 

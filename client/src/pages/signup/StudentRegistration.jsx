@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./studentRegistration.css"
 
@@ -15,6 +15,8 @@ const Signup = () => {
     password: "",
     confirmPassword:"",
   });
+  const [profileImage, setProfileImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState("");
   const navigate = useNavigate();
   const highlights = [
     "Verified student onboarding",
@@ -33,8 +35,22 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files?.[0];
+    setProfileImage(file || null);
+    setPreviewUrl(file ? URL.createObjectURL(file) : "");
   };
 
   const checkInput = () => {
@@ -54,6 +70,10 @@ const Signup = () => {
       alert("Passwords do not match.");
       return false;
     }
+    if (!profileImage) {
+      alert("Profile image is required.");
+      return false;
+    }
     return true;
   };
 
@@ -62,10 +82,17 @@ const Signup = () => {
     if (!checkInput()) return;
     setIsLoading(true);
     try {
+      const formData = new FormData();
+      Object.entries(user).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+      if (profileImage) {
+        formData.append("profileImage", profileImage);
+      }
+
       const response = await fetch(`http://localhost:3000/api/auth/signup`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(user),
+        body: formData,
       });
       
       const res_data =await response.json();
@@ -78,9 +105,8 @@ const Signup = () => {
         navigate("/login");
         
       } else {
-        alert(res_data.msg || res_data.extraDetails.message)
+        alert(res_data.message || res_data.msg || "Authentication failed.")
         console.error("Authentication failed.");
-        alert("Authentication failed.");
       }
     } catch (error) {
       console.error(error);
@@ -205,6 +231,21 @@ const Signup = () => {
                   placeholder="Enter your current address"
                   autoComplete="street-address"
                 />
+              </div>
+
+              <div className="signup-field">
+                <label className="signup-label" htmlFor="profileImage">Profile Image</label>
+                <input
+                  type="file"
+                  id="profileImage"
+                  name="profileImage"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="signup-input signup-file-input"
+                />
+                {previewUrl ? (
+                  <img src={previewUrl} alt="Profile preview" className="signup-image-preview" />
+                ) : null}
               </div>
             </section>
 

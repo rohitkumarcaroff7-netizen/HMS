@@ -323,6 +323,9 @@
 }
 
 .contact-button {
+  width: fit-content;
+  min-width: 170px;
+  justify-self: center;
   border: none;
   border-radius: 6px;
   padding: 10px 14px;

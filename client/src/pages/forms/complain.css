@@ -224,6 +224,9 @@
 }
 
 .complain-submit {
+  width: fit-content;
+  min-width: 180px;
+  align-self: center;
   border: none;
   border-radius: 6px;
   padding: 13px 16px;

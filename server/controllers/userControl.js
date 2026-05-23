@@ -25,6 +25,23 @@ export const register = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hash_password = await bcrypt.hash(password, salt);
+    const uploadedImage = req.file;
+
+    if (!uploadedImage) {
+      return res.status(400).json({ message: "Profile image is required." });
+    }
+
+    const profileImage = uploadedImage
+      ? {
+          data: uploadedImage.buffer,
+          contentType: uploadedImage.mimetype,
+          fileName: uploadedImage.originalname,
+        }
+      : undefined;
+
+    const photoUrl = uploadedImage
+      ? `data:${uploadedImage.mimetype};base64,${uploadedImage.buffer.toString("base64")}`
+      : undefined;
 
     const user = await User.create({
       username,
@@ -36,12 +53,15 @@ export const register = async (req, res) => {
       address,
       gender,
       phone,
+      ...(profileImage ? { profileImage } : {}),
+      ...(photoUrl ? { photoUrl } : {}),
     });
 
     console.log(user);
 
     const token = await user.generateToken();
-    res.status(200).json({ user, token });
+    const createdUser = await User.findById(user._id).select("-password -profileImage.data");
+    res.status(200).json({ user: createdUser, token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error", error });

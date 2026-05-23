@@ -52,6 +52,12 @@ const AdminLayout = () => {
             Events
           </NavLink>
           <NavLink
+            to="carousel"
+            className={({ isActive }) => `admin-link ${isActive ? "active" : ""}`}
+          >
+            Home Carousel
+          </NavLink>
+          <NavLink
             to="foodmenu"
             className={({ isActive }) => `admin-link ${isActive ? "active" : ""}`}
           >

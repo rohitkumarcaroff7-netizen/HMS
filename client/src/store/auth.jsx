@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -18,11 +18,40 @@ export const AuthProvider = ({ children }) => {
 
   const isLoggedIn = !!token;
 
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      if (!token || !userId) {
+        setUser("");
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/auth/getProfile/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          return;
+        }
+
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserProfile();
+  }, [token, userId]);
+
   //logout token
   const LogoutUser = () => {
     setToken("");
     setRole("")
     setUserId("")
+    setUser("")
     localStorage.removeItem("token");
     localStorage.removeItem("role")
     localStorage.removeItem("id")

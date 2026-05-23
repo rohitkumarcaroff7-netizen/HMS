@@ -222,7 +222,9 @@
 }
 
 .login-submit {
-  width: 100%;
+  width: fit-content;
+  min-width: 170px;
+  align-self: center;
   border: none;
   border-radius: 6px;
   padding: 13px 16px;

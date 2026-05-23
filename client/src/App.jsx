@@ -21,6 +21,7 @@ import ContactPage from "./pages/contactUs/ContactUs.jsx";
 import Hostels from "./pages/hostels/hostels.jsx";
 
 import { ComplaintForm } from "./pages/forms/Complain.jsx";
+import { RequestForm } from "./pages/forms/RequestForm.jsx";
 import EventNoticePage from "./pages/notice/EventNoticePage.jsx";
 import EligibleStudentList from "./pages/notice/EligibleStudentList.jsx";
 
@@ -37,6 +38,7 @@ import GetContact from "./pages/Admin/GetComplain.jsx";
 import GetSupport from "./pages/Admin/GetSupport.jsx";
 import PaymentDetails from "./pages/Admin/PaymentDetails.jsx";
 import EventsAdmin from "./pages/Admin/EventsAdmin.jsx";
+import CarouselAdmin from "./pages/Admin/CarouselAdmin.jsx";
 import FoodMenuAdmin from "./pages/Admin/FoodMenuAdmin.jsx";
 import FoodNoticeAdmin from "./pages/Admin/FoodNoticeAdmin.jsx";
 import FeeTableAdmin from "./pages/Admin/FeeTableAdmin.jsx";
@@ -62,6 +64,7 @@ const App = () => {
                 <Route path="createRoom" element={<CreateRoom />} />
                 <Route path="payment_details" element={<PaymentDetails />} />
                 <Route path="events" element={<EventsAdmin />} />
+                <Route path="carousel" element={<CarouselAdmin />} />
                 <Route path="foodmenu" element={<FoodMenuAdmin />} />
                 <Route path="foodnotice" element={<FoodNoticeAdmin />} />
                 <Route path="fee_table" element={<FeeTableAdmin />} />
@@ -92,6 +95,10 @@ const App = () => {
           <Route
             path="/complain"
             element={role === "admin" ? <Navigate to="/" /> : <ComplaintForm />}
+          />
+          <Route
+            path="/request-form"
+            element={role === "admin" ? <Navigate to="/" /> : <RequestForm />}
           />
           <Route path="/event_notice" element={<EventNoticePage />} />
           <Route
