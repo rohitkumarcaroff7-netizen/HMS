@@ -76,7 +76,7 @@ export const deleteComplain = async(req,res)=>{
 export const getPaymentDetails = async (req, res) => {
   try {
     const users = await User.find({ role: { $ne: "admin" } })
-      .select("username email regd_no phone course st_yr purchasedRoom")
+      .select("username email regd_no course st_yr photoUrl purchasedRoom")
       .populate("purchasedRoom", "room_no price isAvailable")
       .sort({ regd_no: 1 });
 
@@ -93,9 +93,9 @@ export const getPaymentDetails = async (req, res) => {
           username: user.username,
           email: user.email,
           regd_no: user.regd_no,
-          phone: user.phone,
           course: user.course,
           st_yr: user.st_yr,
+          photoUrl: user.photoUrl,
         },
       };
     });

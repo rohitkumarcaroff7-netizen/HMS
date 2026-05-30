@@ -48,6 +48,14 @@ const PaymentDetails = () => {
     return true;
   });
 
+  const formatAmount = (amount, isPaid) => {
+    if (!isPaid || amount === null || amount === undefined) {
+      return "Pending";
+    }
+
+    return `${amount} INR`;
+  };
+
   return (
     <div className="payment-page">
       <div className="payment-shell">
@@ -115,70 +123,56 @@ const PaymentDetails = () => {
           </div>
         ) : (
           <div className="payment-list">
+            <div className="payment-list-header">
+              <span>Profile Pic</span>
+              <span>Name</span>
+              <span>Gmail</span>
+              <span>Room Number</span>
+              <span>Registration Number</span>
+              <span>Course</span>
+              <span>Year</span>
+              <span>Amount</span>
+              <span>Status</span>
+            </div>
             {filteredPayments.map((item) => {
               const student = item.stu_id || {};
               const isPaid = item.paymentStatus === "Paid";
+              const imageSrc = student.photoUrl || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
               return (
-                <div key={item._id} className="payment-card">
-                  <div className="payment-card-header">
-                    <div className="payment-card-title-group">
-                      <span className="payment-card-kicker">Student Payment</span>
-                      <h2 className="payment-room-title">
-                        {item.room_no !== null && item.room_no !== undefined ? (
-                          <>
-                            <span className="payment-room-label">Room</span>
-                            <span className="payment-room-number">{item.room_no}</span>
-                          </>
-                        ) : (
-                          "Room not assigned"
-                        )}
-                      </h2>
-                      <p>{isPaid ? `Price: ${item.price} INR` : "Payment is still pending"}</p>
-                    </div>
+                <div key={item._id} className="payment-row">
+                  <div className="payment-row-item payment-profile-cell" data-label="Profile Pic">
+                    <img
+                      src={imageSrc}
+                      alt={student.username || "Student"}
+                      className="payment-profile-pic"
+                    />
+                  </div>
+                  <div className="payment-row-item" data-label="Name">
+                    {student.username || "N/A"}
+                  </div>
+                  <div className="payment-row-item" data-label="Gmail">
+                    {student.email || "N/A"}
+                  </div>
+                  <div className="payment-row-item" data-label="Room Number">
+                    {item.room_no ?? "N/A"}
+                  </div>
+                  <div className="payment-row-item" data-label="Registration Number">
+                    {student.regd_no || "N/A"}
+                  </div>
+                  <div className="payment-row-item" data-label="Course">
+                    {student.course || "N/A"}
+                  </div>
+                  <div className="payment-row-item" data-label="Year">
+                    {student.st_yr || "N/A"}
+                  </div>
+                  <div className="payment-row-item" data-label="Amount">
+                    {formatAmount(item.price, isPaid)}
+                  </div>
+                  <div className="payment-row-item" data-label="Status">
                     <span className={`payment-status ${isPaid ? "paid" : "unpaid"}`}>
                       {item.paymentStatus || "Unknown"}
                     </span>
-                  </div>
-
-                  <div className="payment-student-band">
-                    <div className="payment-avatar" aria-hidden="true">
-                      {student.username?.trim()?.charAt(0)?.toUpperCase() || "S"}
-                    </div>
-                    <div className="payment-student-copy">
-                      <h3>{student.username || "N/A"}</h3>
-                      <p>{student.email || "No email available"}</p>
-                    </div>
-                  </div>
-
-                  <div className="payment-details">
-                    <div>
-                      <span>Registration No</span>
-                      <strong>{student.regd_no || "N/A"}</strong>
-                    </div>
-                    <div>
-                      <span>Course</span>
-                      <strong>{student.course || "N/A"}</strong>
-                    </div>
-                    <div>
-                      <span>Year</span>
-                      <strong>{student.st_yr || "N/A"}</strong>
-                    </div>
-                    <div>
-                      <span>Phone</span>
-                      <strong>{student.phone || "N/A"}</strong>
-                    </div>
-                    <div>
-                      <span>Room Status</span>
-                      <strong>
-                        {item.room_no !== null && item.room_no !== undefined
-                          ? `Assigned: ${item.room_no}`
-                          : "Not assigned"}
-                      </strong>
-                    </div>
-                    <div>
-                      <span>Amount</span>
-                      <strong>{isPaid ? `${item.price} INR` : "Pending"}</strong>
-                    </div>
                   </div>
                 </div>
               );
